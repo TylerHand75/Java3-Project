@@ -4,48 +4,55 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.*;
 
-@WebServlet(name = "AddServ",urlPatterns = {"/add" , "/sum" ,"/addition"}, loadOnStartup = 1)
+@WebServlet(
+        name = "AddServlet"
+//        , value = "/add"
+        , urlPatterns = {"/add", "/sum", "/addition"}
+        , loadOnStartup = 1
+)
 public class AddServ extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("WEB-INF/add.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstNumber = request.getParameter("firstNumber");
         String secondNumber = request.getParameter("secondNumber");
-        Map<String, String> results = add(firstNumber, secondNumber);
-
-        request.setAttribute("results", results);
-        request.getRequestDispatcher("add.jsp").forward(request, response);
+        Map<String,String> results = add(firstNumber, secondNumber);
+        request.setAttribute("results",results);
+        request.getRequestDispatcher("WEB-INF/add.jsp").forward(request,response);
     }
-    public Map<String, String> add(String firstNumber, String secondNumber) {
+    private Map<String, String> add(String num1, String num2) {
         Map<String, String> results = new HashMap<>();
-        boolean firstNumberValid = isANumber(firstNumber);
-        boolean secondNumberValid = isANumber(secondNumber);
-        if(!firstNumberValid) {
-            results.put("firstNumberInvalid", "Invalid number");
+        boolean num1Valid = isNumeric(num1);
+        boolean num2Valid = isNumeric(num2);
+        if ( !num1Valid){
+            results.put("num1Error", "Invalid number");
         }
-        if(!secondNumberValid) {
-            results.put("secondNumberInvalid", "Invalid number");
+        if ( !num2Valid){
+            results.put("num2Error", "Invalid number");
         }
-        if (firstNumberValid && secondNumberValid) {
-            double num1 = Double.parseDouble(firstNumber);
-            double num2 = Double.parseDouble(secondNumber);
-            results.put("num1", num1 + "");
-            results.put("num2", num2 + "");
-            results.put("sum", num1 + num2 + "");
+        if (num1Valid && num2Valid){
+            BigDecimal n1 = new BigDecimal(num1);
+            BigDecimal n2 = new BigDecimal(num2);
+            String sum = n1.add(n2).toString();
+            results.put("sum",sum);
         }
+        results.put("firstNumber",num1);
+        results.put("secondNumber",num2);
         return results;
     }
-    public boolean isANumber(String str) {
+
+    private boolean isNumeric(String num) {
         try {
-            Double.parseDouble(str);
+            Double.parseDouble(num);
             return true;
-        } catch (NumberFormatException e) {
+        } catch(NumberFormatException e) {
             return false;
         }
     }
