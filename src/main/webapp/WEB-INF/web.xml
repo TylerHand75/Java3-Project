@@ -21,4 +21,16 @@
         <servlet-name>BMIServlet</servlet-name>
         <url-pattern>/body-mass</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TempConverter</servlet-name>
+        <url-pattern>/TempConvert</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TempConverter</servlet-name>
+        <url-pattern>/temp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TempConverter</servlet-name>
+        <url-pattern>/Temp</url-pattern>
+    </servlet-mapping>
 </web-app>
