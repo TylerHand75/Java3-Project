@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>BMIServlet</servlet-name>
-        <url-pattern>/bmicalc</url-pattern>
+        <url-pattern>/Bmi</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BMIServlet</servlet-name>

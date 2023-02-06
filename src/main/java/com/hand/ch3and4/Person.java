@@ -74,6 +74,10 @@ public class Person implements Comparable<Person> {
         }
         this.weightInPounds = weightInPounds;
     }
+    public double getBMI(){
+        double result = weightInPounds / Math.pow(heightInInches / 12.0, 2 );
+                return result;
+    }
 
     @Override
     public String toString() {
