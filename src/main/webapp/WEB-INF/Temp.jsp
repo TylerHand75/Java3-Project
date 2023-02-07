@@ -14,7 +14,36 @@
     <h1>Temperature Converter</h1>
 </header>
 <div class="form-container">
+    <form name="main" action="convert" method="POST">
+        Enter temperature <input type="text" name="inputTemp" value="" size="10"/>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" value="Fahrenheit to Celsius" name="fToC"
+                   id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Default radio
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" value="Celsius to Fahrenheit" name="cToF"
+                   id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Default checked radio
+            </label>
+        </div>
+    </form>
 
+    <div>
+        <h1>Temperature Converter</h1>
+        <%System.out.println(request.getParameter("inputTemp") + "\tFahrenheit");%>
+        Equals to <% int ftemp = Integer.parseInt(request.getParameter("inputTemp"));
+        System.out.println((ftemp - 32) * 5 / 9 + "\tCelsius");%>
+    </div>
+    <div>
+        <h1>Temperature Converter</h1>
+        <%System.out.println(request.getParameter("inputTemp") + "\tCelsius");%>
+        Equals to <% int ctemp = Integer.parseInt(request.getParameter("inputTemp"));
+        System.out.println((ctemp * 9 / 5) + 32 + "\tFahrenheit");%>
+    </div>
 
 </div>
 
