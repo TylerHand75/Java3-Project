@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Temperature Converter</title>
-    <link rel="stylesheet" href="TempConverter.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="TempConverter.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -33,13 +31,11 @@
     </form>
 
     <div>
-        <h1>Temperature Converter</h1>
         <%System.out.println(request.getParameter("inputTemp") + "\tFahrenheit");%>
         Equals to <% int ftemp = Integer.parseInt(request.getParameter("inputTemp"));
         System.out.println((ftemp - 32) * 5 / 9 + "\tCelsius");%>
     </div>
     <div>
-        <h1>Temperature Converter</h1>
         <%System.out.println(request.getParameter("inputTemp") + "\tCelsius");%>
         Equals to <% int ctemp = Integer.parseInt(request.getParameter("inputTemp"));
         System.out.println((ctemp * 9 / 5) + 32 + "\tFahrenheit");%>

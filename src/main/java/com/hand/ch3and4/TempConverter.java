@@ -21,21 +21,16 @@ public class TempConverter extends HttpServlet {
         String tempConverted = request.getParameter("temp");
 
 
-        getServletContext().getRequestDispatcher("/temp.jsp").forward(request, response);
 
-
-        request.getRequestDispatcher("WEB-INF/temp.jsp").forward(request, response);
-
-        String path = "";
         if(request.getParameter("fToC") != null) {
-            path = "temp.jsp";
+            tempConverted = "temp.jsp";
         }
         else if (request.getParameter("cToF") != null) {
-            path = "temp.jsp";
+            tempConverted = "temp.jsp";
         }
 
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher(path).forward(request, response);
+            request.getRequestDispatcher(tempConverted).forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
