@@ -13,7 +13,7 @@ public class TempConverter extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/Temp.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/temp.jsp").forward(request, response);
     }
 
     @Override
@@ -24,14 +24,14 @@ public class TempConverter extends HttpServlet {
         getServletContext().getRequestDispatcher("/temp.jsp").forward(request, response);
 
 
-        request.getRequestDispatcher("WEB-INF/Temp.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/temp.jsp").forward(request, response);
 
         String path = "";
-        if(request.getParameter("fToC") != null) { // F to C button is pressed
-            path = "ftoc.jsp";
+        if(request.getParameter("fToC") != null) {
+            path = "temp.jsp";
         }
-        else if (request.getParameter("cToF") != null) { // C to F button is pressed
-            path = "ctof.jsp";
+        else if (request.getParameter("cToF") != null) {
+            path = "temp.jsp";
         }
 
         try (PrintWriter out = response.getWriter()) {
