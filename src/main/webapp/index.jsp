@@ -7,7 +7,6 @@
 <body>
 <h1>Table of Contents</h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
 <h3>chapter 3 and 4</h3>
 <ul>
     <li> <a href="add">Add</a></li>

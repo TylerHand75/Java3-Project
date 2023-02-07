@@ -8,8 +8,11 @@
     }
     String height = results.containsKey("height") ? results.get("height") : "";
     String weight = results.containsKey("weight") ? results.get("weight") : "";
-    String HeightError = results.containsKey("HeightError") ? results.get("HeightError") : "";
-    String WeightError = results.containsKey("WeightError") ? results.get("WeightError") : "";
+    String heightFilled = results.containsKey("height") ? "filled" : "";
+    String weightFilled = results.containsKey("weight") ? "filled" : "";
+
+    String heightError = results.containsKey("heightError") ? results.get("heightError") : "";
+    String weightError = results.containsKey("weightError") ? results.get("weightError") : "";
     String bmi = results.containsKey("bmi") ? results.get("bmi") : "";
 %>
 <!doctype html>
@@ -29,25 +32,26 @@
 <div class="form-container">
     <form action="bmi" method="post" class="cool-form">
         <div class="input-container">
-            <input type="text" name="height" id="height" value="<%= height %>" />
+            <input type="text" name="height" id="height" class="<%= heightFilled %>" value="<%= height %>" />
             <label for="height">Height in inches</label>
         </div>
-        <div class="message-container"><p><%=HeightError%></p></div>
+        <div class="message-container">
+            <p><%= heightError %></p>
+        </div>
         <div class="input-container">
-            <input type="text" name="weight" id="weight" value="<%= weight %>" />
+            <input type="text" name="weight" id="weight" class="<%= weightFilled %>" value="<%= weight %>" />
             <label for="weight">Weight in pounds</label>
         </div>
-        <div class="message-container"><p><%=WeightError%></p></div>
+        <div class="message-container">
+            <p><%= weightError %></p>
+        </div>
         <input type="submit" value="Calculate BMI" />
     </form>
     <% if(!bmi.equals("")) { %>
     <p>Your body mass index is <%= bmi %></p>
     <% } %>
-
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="Scripts/bmi.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="scripts/bmi.js"></script>
 </body>
 </html>

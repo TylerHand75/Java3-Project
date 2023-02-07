@@ -40,7 +40,7 @@ public class BMIServlet extends HttpServlet {
             results.put("WeightError", e.getMessage());
         }
         if (!results.containsKey("HeightError") && !results.containsKey("WeightError")){
-            results.put("bmi",Double.toString(person.getBMI()));
+            results.put("bmi",person.getBMI());
         }
 
         results.put("height",height);
