@@ -13,6 +13,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="java3-project" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: io.github.cdimascio:dotenv-java:2.3.2" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/java3-project-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />

@@ -12,6 +12,7 @@
     <li> <a href="add">Add</a></li>
     <li><a href="temp">Temperature Converter </a></li>
     <li><a href="Bmi">Bmi Converter </a></li>
+    <li><a href="send-sms">Send sms bois</a></li>
 </ul>
 
 </body>
