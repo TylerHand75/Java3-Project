@@ -10,4 +10,9 @@ We also started to learn about the ``@WEBSERVLET()`` which is used to define a s
 
 
 ## Chapter 3 and 4 
-
+In Chapter 3 we learned about servlets and how to control them using the HttpServletResponse and HttpServletRequest interfaces.
+In Chapter 4 we learned about Directives, Declarations, Scriptlets, and Expressions these are used in the JSP File to run java code in the HTML.
+Directives are used to direct the JSP Interpreter perform an action like setting the content type. 
+Declarations are used for declarations of variables, methods or classes within the Tag.
+Scriplets are used to make local variables, use statements and do arithmetic even make a class. 
+Expressions are used to run simple code that can return things that can be written to the client output. 
