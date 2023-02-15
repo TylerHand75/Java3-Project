@@ -1,5 +1,6 @@
 package Twilio;
 
+import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -18,25 +19,25 @@ public class Twilio {
 
     public void sendTextMessage(String phone, String msg) {
         com.twilio.Twilio.init(sid, secretKey);
-        if (!isValidUsPhoneNumber(phone)){
-            throw new IllegalArgumentException("Invalid Phone number");
+        if(!isValidUsPhoneNumber(phone)) {
+            throw new IllegalArgumentException("Invalid phone number");
         }
         if(!isValidMessage(msg)) {
             throw new IllegalArgumentException("Invalid characters detected in the message");
         }
-        if (!isValidMessage(msg)){
-            throw new IllegalArgumentException("Invalid bad words");
-        }
-
-
-        if (phone.charAt(0) != '1'){
+        if(phone.charAt(0) != '1') {
             phone = "1" + phone;
         }
 
-        Message message = Message.creator(new PhoneNumber("+1" + phone),
-                new PhoneNumber(fromPhone),
-                msg).create();
+        try {
+            Message message = Message.creator(new PhoneNumber("+" + phone),
+                    new PhoneNumber(fromPhone),
+                    msg).create();
+        } catch(ApiException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
+
     public boolean isValidMessage(String message) {
         if(message.contains("fu**")) {
             return false;
@@ -44,11 +45,11 @@ public class Twilio {
         return true;
     }
 
-    public Boolean isValidUsPhoneNumber(String phone) {
-    if (phone.matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$")){
-        return true;
+    public boolean isValidUsPhoneNumber(String phone) {
+        if(phone.matches("^(1\\s?)?(\\d{3}|\\(\\d{3}\\))[\\s\\-]?\\d{3}[\\s\\-]?\\d{4}$")) {
+            return true;
         }
-    return false;
+        return false;
     }
 
 
