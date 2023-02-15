@@ -10,7 +10,7 @@ public class Twilio {
     private String secretKey;
 
     public Twilio() {
-        Dotenv dotenv = Dotenv.configure().load();
+        Dotenv dotenv = Dotenv.load();
         fromPhone = dotenv.get("TWILIO_PHONE");
         sid = dotenv.get("TWILIO_SID");
         secretKey = dotenv.get("TWILIO_KEY");
