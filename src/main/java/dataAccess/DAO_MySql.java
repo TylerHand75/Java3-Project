@@ -5,6 +5,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface DAO_MySql<T> {
     default Connection getConnection() throws SQLException {
@@ -24,9 +25,8 @@ public interface DAO_MySql<T> {
                 ,db_driver, db_host, db_name);
         Connection conn = null;
         conn = DriverManager.getConnection(connStr,db_user,db_password);
-
-
         return conn;
     }
+    List<T> getAll();
 
 }

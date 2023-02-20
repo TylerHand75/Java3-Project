@@ -14,7 +14,9 @@ public class ViewUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDAO_MySql userData = new UserDAO_MySql();
-            userData.getAllUsers();
+            userData.getAll();
+            request.setAttribute("users",userData.getAll());
+            request.getRequestDispatcher("WEB-INF/viewusers.jsp").forward(request,response);
 
     }
 
