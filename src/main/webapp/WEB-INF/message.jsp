@@ -26,14 +26,14 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-md-6">
-            <select class="form-select" aria-label="Choose-a-Option">
-                <option selected>Choose a Option</option>
+            <select class="form-control" id="Options" name="select_an_option" aria-label="Choose-a-Option">
+                <option value="Select_Option">Choose a Option</option>
                 <option value="send-message">Send a Text Message</option>
                 <option value="phoneCall">Send a Voice Mail</option>
             </select>
             <h2>Send a message</h2>
             <p class="lead">Enter your Valentine's phone number to send them a message</p>
-            <form action="send-message" method="post">
+            <form action="send-message " method="post">
                 <div class="form-group mb-2 Choose-a-Option">
                     <label for="phone">Phone number</label>
                     <input type="text" id="phone" name="phone" class="form-control" value="<%= phone %>">
@@ -44,17 +44,7 @@
                 </div>
                 <input type="submit" value="Send" class="btn btn-primary mb-2">
             </form>
-            <form action="phoneCall" method="post">
-                <div class="form-group mb-2 Choose-a-Option">
-                    <label for="call">Phone number</label>
-                    <input type="text" id="call" name="call" class="form-control" value="<%= call %>">
-                </div>
-                <div class="form-group mb-2">
-                    <label for="voiceMail">Message</label>
-                    <textarea id="voiceMail" name="voiceMail" class="form-control" rows="3"><%= voiceMail %></textarea>
-                </div>
-                <input type="submit" value="Send" class="btn btn-primary mb-2">
-            </form>
+
             <% if (!messageError.equals("")) { %>
             <div class="alert alert-danger" role="alert">
                 <%= messageError %>

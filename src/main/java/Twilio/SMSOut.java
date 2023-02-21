@@ -20,10 +20,10 @@ public class SMSOut extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String phone = request.getParameter("phone");
         String message = request.getParameter("message");
-        String call = request.getParameter("call");
-        String voiceMail = request.getParameter("voice mail");
+
         Map<String,String> results = new HashMap<>();
         Twilio twilio = new Twilio();
+
         try {
             twilio.sendTextMessage(phone, message);
             results.put("messageSuccess", "Message Sent");
@@ -33,15 +33,15 @@ public class SMSOut extends HttpServlet {
             results.put("phone", phone);
             results.put("message", message);
         }
-        try {
-            twilio.sendPhoneCall(call,voiceMail);
-            results.put("messageSuccess", "Call made");
-
-        } catch (IllegalArgumentException e) {
-            results.put("messageError", e.getMessage());
-            results.put("call", call);
-            results.put("voiceMail", voiceMail);
-        }
+//        try {
+//            twilio.sendPhoneCall(call,voiceMail);
+//            results.put("messageSuccess", "Call made");
+//
+//        } catch (IllegalArgumentException e) {
+//            results.put("messageError", e.getMessage());
+//            results.put("call", call);
+//            results.put("voiceMail", voiceMail);
+//        }
         request.setAttribute("results", results);
         request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
     }

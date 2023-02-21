@@ -29,8 +29,9 @@ public class Twilio {
         Call call = Call.creator(
                         new com.twilio.type.PhoneNumber("+14155551212"),
                         new com.twilio.type.PhoneNumber(fromPhone),
-                        URI.create("http://demo.twilio.com/docs/voice.xml"))
+                        new com.twilio.type.Twiml("<Response><Say>Ahoy, World!</Say></Response>"))
                 .create();
+
         Say say = new Say.Builder("Chapeau!").voice(Say.Voice.WOMAN)
                 .language(Say.Language.EN_CA).build();
         VoiceResponse response = new VoiceResponse.Builder().say(say).build();
