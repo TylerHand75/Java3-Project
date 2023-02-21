@@ -3,13 +3,8 @@ package Twilio;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Call;
 import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.twiml.TwiMLException;
-import com.twilio.twiml.VoiceResponse;
-import com.twilio.twiml.voice.Say;
 import com.twilio.type.PhoneNumber;
 import io.github.cdimascio.dotenv.Dotenv;
-
-import java.net.URI;
 
 public class Twilio {
     private String fromPhone;
@@ -24,47 +19,24 @@ public class Twilio {
         secretKey = dotenv.get("TWILIO_KEY");
     }
 
-    public void sendPhoneCall(String fromPhone, String callMsg) {
-        com.twilio.Twilio.init(sid, secretKey);
-        Call call = Call.creator(
-                        new com.twilio.type.PhoneNumber("+14155551212"),
-                        new com.twilio.type.PhoneNumber(fromPhone),
-                        new com.twilio.type.Twiml("<Response><Say>Ahoy, World!</Say></Response>"))
-                .create();
+    public String sendPhoneCall(String toPhone, String callMsg) {
 
-        Say say = new Say.Builder("Chapeau!").voice(Say.Voice.WOMAN)
-                .language(Say.Language.EN_CA).build();
-        VoiceResponse response = new VoiceResponse.Builder().say(say).build();
+        try{
 
+            Call call = Call.creator(
+                            new com.twilio.type.PhoneNumber(toPhone),
+                            new com.twilio.type.PhoneNumber(fromPhone),
+                            new com.twilio.type.Twiml("<Response><Say voice='alice'>" + callMsg + "</Say></Response>"))
+                    .create();
 
-        try {
-            System.out.println(response.toXml());
-        } catch (TwiMLException e) {
-            e.printStackTrace();
-        }
-
-
-        if (!isValidUsPhoneNumber(fromPhone)) {
-            throw new IllegalArgumentException("Invalid phone number");
-        }
-        if (!isValidMessage(callMsg)) {
-            throw new IllegalArgumentException("Invalid characters detected in the message");
-        }
-        if (fromPhone.charAt(0) != '1') {
-            fromPhone = "1" + fromPhone;
-        }
-
-        try {
-            Message message = Message.creator(new PhoneNumber("+" + fromPhone),
-                    new PhoneNumber(fromPhone),
-                    callMsg).create();
-        } catch (ApiException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            return "Phone call successfully made";
+        }catch(ApiException e){
+            return e.getMessage();
         }
 
     }
 
-    public void sendTextMessage(String phone, String msg) {
+    public String sendTextMessage(String phone, String msg) {
         com.twilio.Twilio.init(sid, secretKey);
         if (!isValidUsPhoneNumber(phone)) {
             throw new IllegalArgumentException("Invalid phone number");
@@ -83,6 +55,7 @@ public class Twilio {
         } catch (ApiException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
+        return phone;
     }
 
 

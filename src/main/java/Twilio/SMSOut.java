@@ -20,28 +20,27 @@ public class SMSOut extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String phone = request.getParameter("phone");
         String message = request.getParameter("message");
+        Map<String, String> results = new HashMap<>();
 
-        Map<String,String> results = new HashMap<>();
-        Twilio twilio = new Twilio();
+        String messageOption = request.getParameter("messageOption");
 
-        try {
-            twilio.sendTextMessage(phone, message);
-            results.put("messageSuccess", "Message Sent");
-
-        } catch(IllegalArgumentException e) {
-            results.put("messageError", e.getMessage());
-            results.put("phone", phone);
-            results.put("message", message);
+        if (messageOption.equals("textMessage")) {
+            if (!results.containsKey("phoneInvalidMsg") && results.get("messageInvalidMsg").equals("")) {
+                Twilio twilio = new Twilio();
+                results.put("twilioMsg", twilio.sendTextMessage(phone, message));
+            }
+        } else if (messageOption.equals("voiceMail")) {
+            if (!results.containsKey("phoneInvalidMsg") && results.get("messageInvalidMsg").equals("")) {
+                Twilio twilio = new Twilio();
+                results.put("twilioMsg", twilio.sendPhoneCall(phone, message));
+            }
+        } else {
+            results.put("twilioMsg", "Please select text message or phone call");
         }
-//        try {
-//            twilio.sendPhoneCall(call,voiceMail);
-//            results.put("messageSuccess", "Call made");
-//
-//        } catch (IllegalArgumentException e) {
-//            results.put("messageError", e.getMessage());
-//            results.put("call", call);
-//            results.put("voiceMail", voiceMail);
-//        }
+
+
+        results.put("phone", phone);
+        results.put("message", message);
         request.setAttribute("results", results);
         request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
     }
