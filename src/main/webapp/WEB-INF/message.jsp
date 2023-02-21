@@ -2,12 +2,14 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    Map<String,String> results = (Map<String,String>)request.getAttribute("results");
-    if(results == null) {
+    Map<String, String> results = (Map<String, String>) request.getAttribute("results");
+    if (results == null) {
         results = new HashMap<>();
     }
     String phone = results.containsKey("phone") ? results.get("phone") : "";
+    String call = results.containsKey("call") ? results.get("call") : "";
     String message = results.containsKey("message") ? results.get("message") : "";
+    String voiceMail = results.containsKey("voiceMail") ? results.get("voiceMail") : "";
     String messageError = results.containsKey("messageError") ? results.get("messageError") : "";
     String messageSuccess = results.containsKey("messageSuccess") ? results.get("messageSuccess") : "";
 %>
@@ -24,10 +26,15 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-md-6">
+            <select class="form-control" id="Options" name="select_an_option" aria-label="Choose-a-Option">
+                <option value="Select_Option">Choose a Option</option>
+                <option value="send-message">Send a Text Message</option>
+                <option value="phoneCall">Send a Voice Mail</option>
+            </select>
             <h2>Send a message</h2>
             <p class="lead">Enter your Valentine's phone number to send them a message</p>
-            <form action="send-message" method="post">
-                <div class="form-group mb-2">
+            <form action="send-message " method="post">
+                <div class="form-group mb-2 Choose-a-Option">
                     <label for="phone">Phone number</label>
                     <input type="text" id="phone" name="phone" class="form-control" value="<%= phone %>">
                 </div>
@@ -37,12 +44,13 @@
                 </div>
                 <input type="submit" value="Send" class="btn btn-primary mb-2">
             </form>
-            <% if(!messageError.equals("")) { %>
+
+            <% if (!messageError.equals("")) { %>
             <div class="alert alert-danger" role="alert">
                 <%= messageError %>
             </div>
             <% } %>
-            <% if(!messageSuccess.equals("")) { %>
+            <% if (!messageSuccess.equals("")) { %>
             <div class="alert alert-success" role="alert">
                 <%= messageSuccess %>
             </div>

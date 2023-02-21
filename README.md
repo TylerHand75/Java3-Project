@@ -16,3 +16,9 @@ Directives are used to direct the JSP Interpreter perform an action like setting
 Declarations are used for declarations of variables, methods or classes within the Tag.
 Scriplets are used to make local variables, use statements and do arithmetic even make a class. 
 Expressions are used to run simple code that can return things that can be written to the client output. 
+
+## Asure 
+
+deploy link = az webapp deploy --resource-group Java-Java3-hand --name java3-tylerh --src-path ./target/java3-project-1.0-SNAPSHOT.war --type war
+class link = https://java3-tylerh.azurewebsites.net
+portfolio = https://github.com/TylerHand75/Java_Script, https://github.com/TylerHand75/Dot_Net_2
