@@ -18,7 +18,12 @@ Scriplets are used to make local variables, use statements and do arithmetic eve
 Expressions are used to run simple code that can return things that can be written to the client output. 
 
 ## Asure 
-
+```
 deploy link = az webapp deploy --resource-group Java-Java3-hand --name java3-tylerh --src-path ./target/java3-project-1.0-SNAPSHOT.war --type war
 class link = https://java3-tylerh.azurewebsites.net
-portfolio = https://github.com/TylerHand75/Java_Script, https://github.com/TylerHand75/Dot_Net_2
+```
+## PortFolio
+```
+ https://github.com/TylerHand75/Java_Script
+ https://github.com/TylerHand75/Dot_Net_2 
+ ```
