@@ -1,6 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
+
+<% String result = null;%>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,36 +14,55 @@
 <header>
     <h1>Temperature Converter</h1>
 </header>
-<div class="form-container">
-    <form action="convert" method="post">
-        Enter temperature <input type="text" name="inputTemp" value="" size="10"/>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" value="Fahrenheit to Celsius" name="fToC"
-                   id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-                Default radio
-            </label>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-4">
+            <h1>Temperature Conversion</h1>
+            <p class="lead">Enter a temperature and select how you want to convert it.</p>
+            <form action="temp" method="post">
+                <div class="form-group mb-2">
+                    <label for="inputTemp">Please enter a temperature:</label>
+                    <input type="text" class="form-control" id="inputTemp" name="temperature">
+                </div>
+
+                <p>Convert To</p>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" value="celsius" id="convCels" name="conversion">
+                    <label class="form-check-label" for="convCels">
+                        Fahrenheit to Celsius
+                    </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" value="fahrenheit" id="convFahr" name="conversion">
+                    <label class="form-check-label" for="convFahr">
+                        Celsius to Fahrenheit
+                    </label>
+                </div>
+
+                <div class="form-group mb-2">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </form>
         </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" value="Celsius to Fahrenheit" name="cToF"
-                   id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
 
-            </label>
+        <div class="col-4">
+
+            <h2>Converted Temperature</h2>
+
+
+
+            <%    if(!result.equals("")){%>
+            <p> <%= result %> </p>
+            <%} else{%>
+            <p> Awaiting conversion.</p>
+            <%}%>
+
         </div>
-    </form>
 
-    <div>
-        <%System.out.println(request.getParameter("inputTemp") + "\tFahrenheit");%>
-        Equals to <% int ftemp = Integer.parseInt(request.getParameter("inputTemp"));
-        System.out.println((ftemp - 32) * 5 / 9 + "\tCelsius");%>
     </div>
-    <div>
-        <%System.out.println(request.getParameter("inputTemp") + "\tCelsius");%>
-        Equals to <% int ctemp = Integer.parseInt(request.getParameter("inputTemp"));
-        System.out.println((ctemp * 9 / 5) + 32 + "\tFahrenheit");%>
-    </div>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

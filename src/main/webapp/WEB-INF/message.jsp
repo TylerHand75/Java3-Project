@@ -52,8 +52,8 @@
                 </div>
                 <input type="submit" value="Send" class="btn btn-primary">
             </form>
-            <% if(!!messageError.equals("")) { %>
-            <p><%= messageError %></p>
+            <% if(!!message.equals("")) { %>
+            <p><%= message %></p>
             <% } %>
         </div>
         <div class="col-md">

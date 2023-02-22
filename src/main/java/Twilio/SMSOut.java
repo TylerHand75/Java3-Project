@@ -22,20 +22,20 @@ public class SMSOut extends HttpServlet {
         String message = request.getParameter("message");
         Map<String, String> results = new HashMap<>();
 
-        String messageOption = request.getParameter("messageOption");
+        String messageOption = request.getParameter("options");
 
         if (messageOption.equals("textMessage")) {
-            if (!results.containsKey("phoneInvalidMsg") && results.get("messageInvalidMsg").equals("")) {
+            if (!results.containsKey("messageError") && results.get("messageError").equals("")) {
                 Twilio twilio = new Twilio();
-                results.put("twilioMsg", twilio.sendTextMessage(phone, message));
+                results.put("message", twilio.sendTextMessage(phone, message));
             }
         } else if (messageOption.equals("voiceMail")) {
-            if (!results.containsKey("phoneInvalidMsg") && results.get("messageInvalidMsg").equals("")) {
+            if (!results.containsKey("messageError") && results.get("messageError").equals("")) {
                 Twilio twilio = new Twilio();
-                results.put("twilioMsg", twilio.sendPhoneCall(phone, message));
+                results.put("message", twilio.sendPhoneCall(phone, message));
             }
         } else {
-            results.put("twilioMsg", "Please select text message or phone call");
+            results.put("message", "Please select text message or phone call");
         }
 
 
