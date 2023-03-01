@@ -18,6 +18,7 @@
 <h3>Chapter 5</h3>
 <ul>
     <li><a href="view-users">View Users</a></li>
+    <li><a href="signup">Add User</a></li>
 </ul>
 
 </body>
