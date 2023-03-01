@@ -70,7 +70,9 @@ public class User {
 
     public void setEmail(String email) {
         // https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression
-//        if(!email.matches("^([\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+\\.)*[\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+@((((([a-z0-9]{1}[a-z0-9\\-]{0,62}[a-z0-9]{1})|[a-z])\\.)+[a-z]{2,6})|(\\d{1,3}\\.){3}\\d{1,3}(\\:\\d{1,5})?)$")) {
+//        if(!email.matches("^([\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+\\.)*[\\w\\!\\#$\\%\\&\\'\\*\\+\\
+//        -\\/\\=\\?\\^\\`{\\|\\}\\~]+@((((([a-z0-9]{1}[a-z0-9\\-]{0,62}[a-z0-9]{1})|[a-z])\\.)+[a-z]{2,6})|(\\d{1,3}\\.
+//        ){3}\\d{1,3}(\\:\\d{1,5})?)$")) {
 //            throw new IllegalArgumentException("Invalid email address");
 //        }
         if(email.length() > 100) {

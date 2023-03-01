@@ -48,11 +48,11 @@ public class UserDAO_MySql implements DAO_MySql<User> {
                         "VALUES (?,?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setString(1, user.getFirst_name());
-                statement.setString(1, user.getLast_name());
-                statement.setString(1, user.getEmail());
-                statement.setString(1, user.getPhone());
-                statement.setString(1, new String(user.getPassword()));
-                statement.setString(1, user.getStatus());
+                statement.setString(2, user.getLast_name());
+                statement.setString(3, user.getEmail());
+                statement.setString(4, user.getPhone());
+                statement.setString(5, new String(user.getPassword()));
+                statement.setString(6, user.getStatus());
                 numRowsAffected = statement.executeUpdate();
                 statement.close();
 
