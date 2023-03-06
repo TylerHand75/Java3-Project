@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class CountryDAO_CSV {
     public static List<Country> getAll(HttpServletRequest request, HttpServletResponse response)   {
         List<Country> countries = new ArrayList<>();
-        try (Scanner in  = new Scanner(new File(request.getContextPath()+ "/WEB-INF/funstuff/countries.csv"))){
-
-                int lineCount = 1;
+        try(Scanner in = new Scanner(new File(request.getServletContext().getRealPath("/WEB-INF/Funstuff/countries.csv")))){
+                int lineCount = 0;
                 while (in.hasNext()){
                     String[] dataStr = in.nextLine().split(",");
                     lineCount++;
@@ -31,6 +31,7 @@ public class CountryDAO_CSV {
         }catch (FileNotFoundException e){
             System.out.printf("File not found");
         }
+        Collections.sort(countries);
         return countries;
     }
 }

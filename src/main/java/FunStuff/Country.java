@@ -1,6 +1,8 @@
 package FunStuff;
 
-public class Country {
+import java.util.Collection;
+
+public class Country implements Comparable<Country> , Cloneable {
     private String name;
     private String continent;
     private int population;
@@ -37,6 +39,11 @@ public class Country {
 
     public void setPopulation(int population) {
         this.population = population;
+    }
+
+    @Override
+    public int compareTo(Country o) {
+        return this.name.compareTo(o.name);
     }
 }
 
