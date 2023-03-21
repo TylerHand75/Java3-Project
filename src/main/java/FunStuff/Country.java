@@ -1,8 +1,6 @@
 package FunStuff;
 
-import java.util.Collection;
-
-public class Country implements Comparable<Country> , Cloneable {
+public class Country implements Comparable<Country>, Cloneable {
     private String name;
     private String continent;
     private int population;
@@ -45,9 +43,9 @@ public class Country implements Comparable<Country> , Cloneable {
     public int compareTo(Country o) {
         return this.name.compareTo(o.name);
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
-
-
-
-
-
