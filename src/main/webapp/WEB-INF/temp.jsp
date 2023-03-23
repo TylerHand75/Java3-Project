@@ -2,7 +2,11 @@
 <!doctype html>
 <html lang="en">
 
-<% String result = null;%>
+<%
+    String result = (String)request.getAttribute("conversion");
+
+
+%>
 
 <head>
     <meta charset="utf-8">
@@ -51,8 +55,6 @@
         <div class="col-4">
 
             <h2>Converted Temperature</h2>
-
-
 
             <%    if(!result.equals("")){%>
             <p> <%= result %> </p>
