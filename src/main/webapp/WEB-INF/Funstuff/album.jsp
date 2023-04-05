@@ -39,9 +39,6 @@
     </tr>
 
     <% } %>
-
-    In this updated code block, we first check if the albums attribute is not null and has at least one album using the if statement. If the condition is true, we then iterate over the Album array and output each album's properties using JSP expressions. If the condition is false, we output a message stating that no albums were found using an else statement.
-
 </table>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
