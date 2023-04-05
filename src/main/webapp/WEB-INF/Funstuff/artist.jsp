@@ -65,7 +65,7 @@
                 <img src="https://picsum.photos/id/56/100/75" alt="<%= artist.getName() %>">
                 <% } %>
             </td>
-            <td ><a class="btn  btn-outline-success"  role="button" href="albums?artist=<%=artist.getId()%>">
+            <td ><a class="btn  btn-outline-success"  role="button"  href="albums?artist=<%=artist.getId()%> & artistname=<%=artist.getName()%>">
                 <%= artist.getName() %></a></td>
             <td>
                 <% for(String genre: artist.getGenres()) { %>
@@ -74,9 +74,11 @@
             </td>
             <td class="text-end">
                 <%= String.format("%,.0f", (double)artist.getFollowers().getTotal()) %>
+
             </td>
             <td class="text-end">
                 <%= String.format("%,.1f", (double)artist.getPopularity()) + "%"  %>
+
             </td>
             <td>
                 <a class="btn btn-outline-info btn-sm"  href="<%=artist.getExternalUrls().getExternalUrls().get("spotify")%>"

@@ -1,6 +1,5 @@
 package dataAccess;
 
-
 import Ch5.User;
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 
@@ -22,11 +21,11 @@ public class UserDAO_MySql implements DAO_MySql<User> {
                     int id = resultSet.getInt("id");
                     String firstName = resultSet.getString("first_name");
                     String lastName = resultSet.getString("last_name");
-                    String phone = resultSet.getString("phone");
                     String email = resultSet.getString("email");
                     char[] password = resultSet.getString("password").toCharArray();
                     String status = resultSet.getString("status");
-                    User user = new User(id, firstName, lastName, phone, email, password, status);
+                    String privileges = resultSet.getString("privileges");
+                    User user = new User(id, firstName, lastName, email, password, status, privileges);
                     users.add(user);
                 }
                 resultSet.close();
@@ -44,15 +43,14 @@ public class UserDAO_MySql implements DAO_MySql<User> {
         int numRowsAffected = 0;
         try (Connection connection = getConnection()){
             if (connection.isValid(2)){
-                String sql = "INSERT INTO users (first_name,last_name, email, phone, password, status)" +
-                        "VALUES (?,?,?,?,?,?)";
+                String sql = "INSERT INTO users (first_name,last_name, email, password, status)" +
+                        "VALUES (?,?,?,?,?)";
                 PreparedStatement statement = connection.prepareStatement(sql);
                 statement.setString(1, user.getFirst_name());
                 statement.setString(2, user.getLast_name());
                 statement.setString(3, user.getEmail());
-                statement.setString(4, user.getPhone());
-                statement.setString(5, new String(user.getPassword()));
-                statement.setString(6, user.getStatus());
+                statement.setString(4, new String(user.getPassword()));
+                statement.setString(5, "active");
                 numRowsAffected = statement.executeUpdate();
                 statement.close();
 

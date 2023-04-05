@@ -1,4 +1,4 @@
-package FunStuff;
+package FunStuff.Spotify;
 
 
 import se.michaelthelin.spotify.model_objects.specification.Artist;
@@ -20,5 +20,6 @@ public class ArtistServlet extends HttpServlet {
         Artist[] artists = MySpotify.searchArtists(q);
         request.setAttribute("artists", artists);
         request.getRequestDispatcher("WEB-INF/Funstuff/artist.jsp").forward(request, response);
+
     }
 }

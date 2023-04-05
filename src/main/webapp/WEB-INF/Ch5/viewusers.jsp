@@ -30,7 +30,6 @@ if (users == null){
             <li class="list-group-item active">Name: <%= user.getFirst_name() %> <%= user.getLast_name()%></li>
             <li class="list-group-item ">ID: <%= user.getId() %> </li>
             <li class="list-group-item ">Email: <%= user.getEmail() %> </li>
-            <li class="list-group-item ">Phone: <%= user.getPhone() %> </li>
             <li class="list-group-item ">Password: <%= user.getPassword() %> </li>
             <li class="list-group-item ">Status: <%= user.getStatus() %> </li>
         </ul>

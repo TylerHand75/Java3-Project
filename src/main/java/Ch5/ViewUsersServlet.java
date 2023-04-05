@@ -16,7 +16,7 @@ public class ViewUsersServlet extends HttpServlet {
         UserDAO_MySql userData = new UserDAO_MySql();
             userData.getAll();
             request.setAttribute("users",userData.getAll());
-            request.getRequestDispatcher("WEB-INF/viewusers.jsp").forward(request,response);
+            request.getRequestDispatcher("WEB-INF/Ch5/viewusers.jsp").forward(request,response);
 
     }
 

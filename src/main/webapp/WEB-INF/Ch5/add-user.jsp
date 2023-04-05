@@ -11,7 +11,7 @@
     String firstName = results.containsKey("firstName") ? results.get("firstName") : "";
     String lastName = results.containsKey("lastName") ? results.get("lastName") : "";
     String email = results.containsKey("email") ? results.get("email") : "";
-    String phone = results.containsKey("phone") ? results.get("phone") : "";
+
     String password1 = results.containsKey("password1") ? results.get("password1") : "";
     String password2 = results.containsKey("password2") ? results.get("password2") : "";
     String agreeChecked = results.containsKey("agreeToTerms") ? "checked" : "";
@@ -19,7 +19,7 @@
     String firstNameError = results.containsKey("firstNameError") ? results.get("firstNameError") : "";
     String lastNameError = results.containsKey("lastNameError") ? results.get("lastNameError") : "";
     String emailError = results.containsKey("emailError") ? results.get("emailError") : "";
-    String phoneError = results.containsKey("phoneError") ? results.get("phoneError") : "";
+
     String password1Error = results.containsKey("password1Error") ? results.get("password1Error") : "";
     String password2Error = results.containsKey("password2Error") ? results.get("password2Error") : "";
     String agreeError = results.containsKey("agreeError") ? results.get("agreeError") : "";
@@ -27,7 +27,7 @@
     String firstNameInvalid = results.containsKey("firstNameError") ? "is-invalid" : "";
     String lastNameInvalid = results.containsKey("lastNameError") ? "is-invalid" : "";
     String emailInvalid = results.containsKey("emailError") ? "is-invalid" : "";
-    String phoneInvalid = results.containsKey("phoneError") ? "is-invalid" : "";
+
     String password1Invalid = results.containsKey("password1Error") ? "is-invalid" : "";
     String password2Invalid = results.containsKey("password2Error") ? "is-invalid" : "";
     String agreeInvalid = results.containsKey("agreeError") ? "is-invalid" : "";
@@ -81,11 +81,6 @@
                             <div class="invalid-feedback"><%= emailError %></div>
                         </div>
 
-                        <div class="col-sm-6 mb-2">
-                            <label for="phone" class="form-label">Phone Number</label>
-                            <input type="text" class="form-control <%= phoneInvalid %>" id="phone" name="phone" placeholder="123-456-7890" value="<%= phone %>">
-                            <div class="invalid-feedback"><%= phoneError %></div>
-                        </div>
 
                         <div class="col-sm-6 mb-2">
                             <label for="password1" class="form-label">Password</label>
