@@ -1,103 +1,82 @@
-/* HTML, CSS, and JS from Brian Guerrero https://codepen.io/brian-guerrero/pen/XKMEaw */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic);
-html, body {
-    height: 100%;
-}
-
 body {
-    font-family: "Open Sans", sans-serif;
-    align-items: center;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.input-container {
-    margin-bottom: 10px;
-    position: relative;
-    margin-top: 2rem;
-}
-.input-container input {
-    padding: 0.5rem 0;
-    border: none;
-    border-bottom: 2px solid #999;
-    color: #999;
-    transition: all ease-in 0.5s;
-}
-.input-container input:focus, .input-container input:active {
-    outline: none;
-    border-bottom: 2px solid cornflowerblue;
-    color: cornflowerblue;
-}
-.input-container input:focus + label, .input-container input:active + label {
-    top: -0.5rem;
-    color: cornflowerblue;
-    transform: translateY(-50%) scale(1.125);
-    font-style: normal;
-}
-.input-container input.filled {
-    color: cornflowerblue;
-    border-color: cornflowerblue;
-}
-.input-container input.filled + label {
-    top: -0.5rem;
-    color: cornflowerblue;
-    transform: translateY(-50%) scale(1.125);
-    font-style: normal;
-}
-.input-container label {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    transition: all ease-in-out 0.5s;
-    color: #999;
-    font-style: italic;
-    text-transform: uppercase;
-}
-.input-container label::-moz-selection {
-    background: transparent;
-}
-.input-container label::selection {
-    background: transparent;
-}
-
-input[type=submit] {
-    width: 100%;
-    padding: 0.5em;
-    color: #999;
-    background: transparent;
-    border: 2px solid #999;
-    transition: all ease-in-out 0.5s;
-    tex-transform: uppercase;
-}
-input[type=submit]:hover, input[type=submit]:focus {
-    color: cornflowerblue;
-    border-color: cornflowerblue;
-    outline: none;
-}
-input[type=submit]:click {
-    background-color: cornflowerblue;
-}
-.message-container p {
-    color: red;
-    margin: 5px 0px 15px;
-    font-style: italic;
-    font-size: 0.9rem;
-}
-.h1{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
-.p1{
-    font-family: "Lucida Console", "Courier New", monospace;
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+/* Page header */
+header {
+    background-color: #555;
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+/* Container */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Form styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form-check-label {
+    margin-left: 10px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0062cc;
+    border-color: #005cbf;
+    color: #fff;
+}
+
+/* Result styles */
+.col-4:last-child {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.col-4:last-child h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.col-4:last-child p {
+    font-size: 18px;
+    margin: 0;
 }

@@ -3,27 +3,23 @@
 <html lang="en">
 
 <%
-    String result = (String)request.getAttribute("conversion");
-
-
+    String result = (String)request.getAttribute("result");
 %>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="TempConverter.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1>Temperature Converter</h1>
-</header>
 <div class="container my-4">
     <div class="row">
         <div class="col-4">
             <h1>Temperature Conversion</h1>
             <p class="lead">Enter a temperature and select how you want to convert it.</p>
-            <form action="temp" method="post">
+            <form action="TempConverter" method="post">
                 <div class="form-group mb-2">
                     <label for="inputTemp">Please enter a temperature:</label>
                     <input type="text" class="form-control" id="inputTemp" name="temperature">
@@ -56,11 +52,11 @@
 
             <h2>Converted Temperature</h2>
 
-            <%    if(!result.equals("")){%>
-            <p> <%= result %> </p>
-            <%} else{%>
-            <p> Awaiting conversion.</p>
-            <%}%>
+            <% if (result != null && !result.isEmpty()) { %>
+                <p><%= result %></p>
+            <% } else { %>
+                <p>Waiting for conversion...</p>
+            <% } %>
 
         </div>
 
