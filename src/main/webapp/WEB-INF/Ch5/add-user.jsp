@@ -1,9 +1,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="Ch5.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-
     Map<String, String> results = (Map<String, String>)request.getAttribute("results");
     if(results == null) {
         results = new HashMap<>();
@@ -11,7 +9,7 @@
     String firstName = results.containsKey("firstName") ? results.get("firstName") : "";
     String lastName = results.containsKey("lastName") ? results.get("lastName") : "";
     String email = results.containsKey("email") ? results.get("email") : "";
-
+    String phone = results.containsKey("phone") ? results.get("phone") : "";
     String password1 = results.containsKey("password1") ? results.get("password1") : "";
     String password2 = results.containsKey("password2") ? results.get("password2") : "";
     String agreeChecked = results.containsKey("agreeToTerms") ? "checked" : "";
@@ -19,7 +17,7 @@
     String firstNameError = results.containsKey("firstNameError") ? results.get("firstNameError") : "";
     String lastNameError = results.containsKey("lastNameError") ? results.get("lastNameError") : "";
     String emailError = results.containsKey("emailError") ? results.get("emailError") : "";
-
+    String phoneError = results.containsKey("phoneError") ? results.get("phoneError") : "";
     String password1Error = results.containsKey("password1Error") ? results.get("password1Error") : "";
     String password2Error = results.containsKey("password2Error") ? results.get("password2Error") : "";
     String agreeError = results.containsKey("agreeError") ? results.get("agreeError") : "";
@@ -27,12 +25,12 @@
     String firstNameInvalid = results.containsKey("firstNameError") ? "is-invalid" : "";
     String lastNameInvalid = results.containsKey("lastNameError") ? "is-invalid" : "";
     String emailInvalid = results.containsKey("emailError") ? "is-invalid" : "";
-
+    String phoneInvalid = results.containsKey("phoneError") ? "is-invalid" : "";
     String password1Invalid = results.containsKey("password1Error") ? "is-invalid" : "";
     String password2Invalid = results.containsKey("password2Error") ? "is-invalid" : "";
     String agreeInvalid = results.containsKey("agreeError") ? "is-invalid" : "";
-    String userAddSuccess = results.containsKey("userAddSuccess") ? results.get("userAddSuccess") : "";
 
+    String userAddSuccess = results.containsKey("userAddSuccess") ? results.get("userAddSuccess") : "";
 %>
 <!doctype html>
 <html lang="en">
@@ -42,8 +40,19 @@
     <title>Add a user</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500,900,100,300,700,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/nav.css">
 </head>
 <body class="bg-light">
+<header>
+    <nav class="shift">
+        <ul>
+            <li><a href="<%= request.getContextPath() %>/">Home</a></li>
+            <li><a href="<%= request.getContextPath() %>/signup">Register</a></li>
+            <li><a href="<%= request.getContextPath() %>/login">Login</a></li>
+        </ul>
+    </nav>
+</header>
 
 <div class="container">
     <main>
@@ -75,12 +84,11 @@
                             <div class="invalid-feedback"><%= lastNameError %></div>
                         </div>
 
-                        <div class="col-sm-6 mb-2">
+                        <div class="col-sm-12 mb-2">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control <%= emailInvalid %>" id="email" name="email" placeholder="you@example.com" value="<%= email %>">
+                            <input type="text" class="form-control <%= emailInvalid %>" id="email" name="email" placeholder="you@example.com" value="<%= email %>">
                             <div class="invalid-feedback"><%= emailError %></div>
                         </div>
-
 
                         <div class="col-sm-6 mb-2">
                             <label for="password1" class="form-label">Password</label>
@@ -93,11 +101,6 @@
                             <input type="password" class="form-control <%= password2Invalid %>" name="password2" id="password2" value="<%= password2 %>">
                             <div class="invalid-feedback"><%= password2Error %></div>
                         </div>
-
-                        <div class="col-12 mb-2">
-                            <span class="text-muted">Minimum 8 characters with at least 1 uppercase letter, 1 lowercase letter, and 1 number</span>
-                        </div>
-
                     </div>
 
                     <div class="col-12 form-check my-4">
@@ -121,6 +124,7 @@
         </ul>
     </footer>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>

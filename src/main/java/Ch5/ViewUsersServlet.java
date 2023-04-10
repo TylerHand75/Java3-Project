@@ -13,8 +13,13 @@ import java.sql.SQLException;
 public class ViewUsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        if(session.getAttribute("user") == null) {
+            response.sendRedirect("login");
+            return;
+        }
         UserDAO_MySql userData = new UserDAO_MySql();
-            userData.getAll();
             request.setAttribute("users",userData.getAll());
             request.getRequestDispatcher("WEB-INF/Ch5/viewusers.jsp").forward(request,response);
 
