@@ -4,19 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0" >
     <display-name>Java 3 2023 apps</display-name>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/File-Not-Found.html</location>
-    </error-page>
     <servlet>
         <servlet-name>BMIServlet</servlet-name>
         <servlet-class>com.hand.ch3and4.BMIServlet</servlet-class>
-        <load-on-startup>-1</load-on-startup>
+        <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>BMIServlet</servlet-name>
-        <url-pattern>/Bmi</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BMIServlet</servlet-name>
         <url-pattern>/bmi</url-pattern>
@@ -25,16 +17,12 @@
         <servlet-name>BMIServlet</servlet-name>
         <url-pattern>/body-mass</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TempConverter</servlet-name>
-        <url-pattern>/TempConvert</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TempConverter</servlet-name>
-        <url-pattern>/temp</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TempConverter</servlet-name>
-        <url-pattern>/Temp</url-pattern>
-    </servlet-mapping>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/File-Not-Found.html</location>
+    </error-page>
+    <session-config>
+        <session-timeout>30</session-timeout>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
 </web-app>
