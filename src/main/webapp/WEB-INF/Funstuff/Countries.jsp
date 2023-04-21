@@ -62,7 +62,7 @@
 
 </header>
 <div class="container my-4">
-    <p class="lead">Showing <%= countries.size() %> countr<%= countries.size() == 1 ? "y" : "ies" %></p>
+    <p class="lead">Showing <%= countries.size() %> country <%= countries.size() == 1 ? "y" : "ies" %></p>
     <div class="row">
         <% for(Country country: countries) { %>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">

@@ -1,7 +1,7 @@
 package Ch5;
 
-import dataAccess.UserDAO_MySql;
-import org.mindrot.jbcrypt.BCrypt;
+import dataAccess.UserDAO_MySQL;
+import org.mindrot.jbcrypt.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
         request.setAttribute("loginFailed", false);
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        UserDAO_MySql dao = new UserDAO_MySql();
+        UserDAO_MySQL dao = new UserDAO_MySQL();
         User user = dao.getUser(email);
         if(email == null || email.equals("") ||
                 password == null || password.equals("") ||
@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
                 request.changeSessionId();
                 user.unsetPassword();
                 session.setAttribute("user", user);
-                response.sendRedirect("view-users"); // change for final project
+                response.sendRedirect(request.getContextPath()); // redirects to the homepage
                 return;
             } else {
                 // Not match

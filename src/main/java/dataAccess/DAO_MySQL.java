@@ -5,9 +5,8 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
 
-public interface DAO_MySql<T> {
+public interface DAO_MySQL<T> {
     default Connection getConnection() throws SQLException {
         Dotenv dotenv = Dotenv.load();
         String db_full_driver = dotenv.get("DB_FULL_DRIVER");

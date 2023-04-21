@@ -21,6 +21,7 @@ import java.util.concurrent.CompletionException;
 
 public class MySpotify {
     private static String accessToken;
+
     public static String getAccessToken() {
         Dotenv dotenv = Dotenv.load();
         String clientId = dotenv.get("SPOTIFY_CLIENT_ID");
@@ -31,26 +32,23 @@ public class MySpotify {
                 .build();
         ClientCredentialsRequest clientCredentialsRequest = spotifyApi.clientCredentials()
                 .build();
-        ClientCredentials clientCredentials = null;
         try {
-            clientCredentials = clientCredentialsRequest.execute();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (SpotifyWebApiException e) {
-            throw new RuntimeException(e);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+            final CompletableFuture<ClientCredentials> clientCredentialsFuture = clientCredentialsRequest.executeAsync();
+            final ClientCredentials clientCredentials = clientCredentialsFuture.join();
+            accessToken = clientCredentials.getAccessToken();
+            System.out.println("Access token: " + accessToken);
+            System.out.println("Expires in: " + clientCredentials.getExpiresIn());
+        } catch (CompletionException e) {
+            System.out.println("Error: " + e.getCause().getMessage());
+        } catch (CancellationException e) {
+            System.out.println("Async operation canceled.");
         }
-        accessToken = clientCredentials.getAccessToken();
         return accessToken;
     }
     private static SpotifyApi getSpotifyApi() {
-        Dotenv dotenv = Dotenv.load();
-        String clientId = dotenv.get("SPOTIFY_CLIENT_ID");
-        String clientSecret = dotenv.get("SPOTIFY_CLIENT_SECRET");
+
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
-                .setClientId(clientId)
-                .setClientSecret(clientSecret)
+                .setAccessToken(getAccessToken())
                 .build();
         return spotifyApi;
     }
@@ -132,9 +130,6 @@ public class MySpotify {
 
         return tracks;
     }
-
-
-
 
 
 }

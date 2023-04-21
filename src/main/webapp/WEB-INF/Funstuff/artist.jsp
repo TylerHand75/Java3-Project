@@ -65,8 +65,7 @@
                 <img src="https://picsum.photos/id/56/100/75" alt="<%= artist.getName() %>">
                 <% } %>
             </td>
-            <td ><a class="btn  btn-outline-success"  role="button"  href="albums?artist=<%=artist.getId()%> & artistname=<%=artist.getName()%>">
-                <%= artist.getName() %></a></td>
+            <td ><a class="btn  btn-outline-success"  role="button"  href="albums?<%=artist.getId()%>"> <%= artist.getName()%> </a></td>
             <td>
                 <% for(String genre: artist.getGenres()) { %>
                 <%= WordUtils.capitalize(genre) %><br>

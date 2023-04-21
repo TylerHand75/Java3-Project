@@ -38,7 +38,11 @@ public class TempConverter extends HttpServlet {
     private boolean checkInput(String input){
         try{
             Double.parseDouble(input);
-            return true;
+            if (input == null || input.equals("0")){
+                return false;
+            }else {
+                return true;
+            }
         }catch (NumberFormatException ex){
             return false;
         }
