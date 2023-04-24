@@ -1,11 +1,9 @@
 package Ch5;
 
-<<<<<<< HEAD
+import Ch5.User;
 import dataAccess.UserDAO_MySQL;
 import org.mindrot.jbcrypt.*;
 
-=======
->>>>>>> parent of 02b7134 (Class things)
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -15,14 +13,15 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/Ch5/login.jsp").forward(request, response);
+        request.setAttribute("loginFailed", false);
+        request.getRequestDispatcher("WEB-INF/ch5/login.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("loginFailed", false);
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-<<<<<<< HEAD
         UserDAO_MySQL dao = new UserDAO_MySQL();
         User user = dao.getUser(email);
         if(email == null || email.equals("") ||
@@ -30,7 +29,7 @@ public class LoginServlet extends HttpServlet {
                 user == null
         ) {
             request.setAttribute("loginFailed", true);
-            request.getRequestDispatcher("WEB-INF/Ch5/login.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/ch5/login.jsp").forward(request, response);
             return;
         } else {
             // User was found
@@ -45,15 +44,9 @@ public class LoginServlet extends HttpServlet {
             } else {
                 // Not match
                 request.setAttribute("loginFailed", true);
-                request.getRequestDispatcher("WEB-INF/Ch5/login.jsp").forward(request, response);
+                request.getRequestDispatcher("WEB-INF/ch5/login.jsp").forward(request, response);
                 return;
             }
-=======
-        if (email == null || email.equals("") || password == null || password.equals("")) {
-            request.setAttribute("loginFailed", true);
-            request.getRequestDispatcher("WEB-INF/Ch5/login.jsp").forward(request, response);
-            return;
->>>>>>> parent of 02b7134 (Class things)
         }
     }
 }

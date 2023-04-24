@@ -3,7 +3,7 @@
 <html lang="en">
 
 <%
-<<<<<<< HEAD
+
     String result = (String) request.getAttribute("result");
     String conversionFormula = "";
     String conversionType = request.getParameter("conversion");
@@ -14,9 +14,7 @@
             conversionFormula = " - 32 * 5/9 = ";
         }
     }
-=======
-    String result = (String)request.getAttribute("result");
->>>>>>> parent of 02b7134 (Class things)
+
 %>
 
 <head>
@@ -27,7 +25,7 @@
     <link href="TempConverter.css" rel="stylesheet">
 </head>
 <body>
-<<<<<<< HEAD
+
 <h1>Temperature Converter</h1>
 <form action="/temp" method="post">
     <label for="temperature">Enter Temperature:</label>
@@ -58,7 +56,7 @@
 </body>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-=======
+
 <div class="container my-4">
     <div class="row">
         <div class="col-4">
@@ -111,6 +109,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
->>>>>>> parent of 02b7134 (Class things)
+
 </body>
 </html>
