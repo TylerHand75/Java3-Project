@@ -1,5 +1,7 @@
 package Ch5;
 
+import FunStuff.Message.AzureCommunication;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -14,6 +16,9 @@ public class UserProfileServlet extends HttpServlet {
             response.sendRedirect("login");
             return;
         }
+        User user = (User) session.getAttribute("user");
+        AzureCommunication.sendMail(user.getEmail(), "Welcome to the site!", "Welcome to the site, " + user.getFirst_name()+ "" + user.getLast_name() + "!");
+
         session.setAttribute("example", new Example("Test"));
         request.getRequestDispatcher("WEB-INF/ch5/user-profile.jsp").forward(request, response);
     }

@@ -1,10 +1,6 @@
 package FunStuff.Message;
-
-import com.azure.communication.email.EmailClient;
-import com.azure.communication.email.EmailClientBuilder;
-import com.azure.communication.email.models.EmailMessage;
-import com.azure.communication.email.models.EmailSendResult;
-import com.azure.communication.email.models.EmailSendStatus;
+import com.azure.communication.email.models.*;
+import com.azure.communication.email.*;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollResponse;
 import com.azure.core.util.polling.SyncPoller;
@@ -12,22 +8,30 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 import java.time.Duration;
 
-public class AzureEmail {
+public class AzureCommunication {
     private static final Duration POLLER_WAIT_TIME = Duration.ofSeconds(10);
-
-    public static void main(String[] args) {
+    private static String getConnection() {
         Dotenv dotenv = Dotenv.load();
-        String connectionString = "endpoint=https://" + dotenv.get("AZURE_EMAIL_RESOURCE") + ".communication.azure.com/;accesskey=" + dotenv.get("AZURE_EMAIL_KEY");
+        String connectionString =
+                "endpoint=https://"
+                        + dotenv.get("AZURE_EMAIL_RESOURCE")
+                        + ".communication.azure.com/;accesskey="
+                        + dotenv.get("AZURE_EMAIL_KEY");
+        return connectionString;
+    }
+
+    public static void sendMail(String toEmail, String subject, String body) {
+        Dotenv dotenv = Dotenv.load();
 
         EmailClient emailClient = new EmailClientBuilder()
-                .connectionString(connectionString)
+                .connectionString(getConnection())
                 .buildClient();
 
         EmailMessage message = new EmailMessage()
                 .setSenderAddress(dotenv.get("AZURE_FROM_EMAIL"))
-                .setToRecipients("<tylerhand13@gmail.com>") // Change this to the email of the logged in user
-                .setSubject("Welcome to Azure Communication Services Email")
-                .setBodyPlainText("This email message is sent from Azure Communication Services Email using the Java SDK.");
+                .setToRecipients("<" + toEmail + ">")
+                .setSubject(subject)
+                .setBodyPlainText(body);
 
         try
         {
@@ -67,5 +71,12 @@ public class AzureEmail {
             System.out.println(exception.getMessage());
         }
 
+    }
+
+    public static void main(String[] args) {
+        sendMail("Marc.Hauschildt@kirkwood.edu",
+                "Welcome to Azure Communication Services Email",
+                "This email message is sent from Azure Communication Services Email using the Java SDK."
+        );
     }
 }

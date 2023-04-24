@@ -3,10 +3,12 @@
     String result = (String) request.getAttribute("result");
     String conversionFormula = "";
     String conversionType = request.getParameter("conversion");
-    if (conversionType.equals("celsius to fahrenheit")) {
-        conversionFormula = "Fahrenheit = Celsius * 1.8 + 32";
-    } else if (conversionType.equals("fahrenheit to celsius")) {
-        conversionFormula = "Celsius = (Fahrenheit - 32) / 1.8";
+    if (conversionType != null) {
+        if (conversionType.equals("celsius to fahrenheit")) {
+            conversionFormula = " * 9/5 + 32 = ";
+        } else if (conversionType.equals("fahrenheit to celsius")) {
+            conversionFormula = " - 32 * 5/9 = ";
+        }
     }
 %>
 <html>
