@@ -26,15 +26,6 @@ public class User {
         setPrivileges(privileges);
     }
 
-    public User(int id, String first_name, String last_name, String email, String status, String privileges) {
-        setId(id);
-        setFirst_name(first_name);
-        setLast_name(last_name);
-        setEmail(email);
-        setStatus(status);
-        setPrivileges(privileges);
-    }
-
     public int getId() {
         return id;
     }
@@ -103,7 +94,7 @@ public class User {
                 "(?=.*[0-9])" + // a digit must occur at least once
                 "(?=.*[a-z])" + // a lower case letter must occur at least once
                 "(?=.*[A-Z])" + // an upper case letter must occur at least once
-                //"(?=.*[@#$%^&+=])" + // a special character must occur at least once
+                // "(?=.*[@#$%^&+=])" + // a special character must occur at least once
                 "(?=\\S+$)" + // no whitespace allowed in the entire string
                 ".{8,}" + // anything, at least eight characters
                 "$");
@@ -112,14 +103,6 @@ public class User {
             throw new IllegalArgumentException("Password must contain at least 8 characters, with 1 digit, 1 lowercase,and 1 uppercase letter");
         }
         this.password = passwordStr.toCharArray();
-    }
-
-    public void setPasswordFromDB(String password) {
-        this.password = password.toCharArray();
-    }
-
-    public void unsetPassword() {
-        this.password = null;
     }
 
     public String getStatus() {

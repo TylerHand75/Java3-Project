@@ -4,11 +4,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 
-
-@WebServlet(name = "TempConverter", value = "/temp")
+@WebServlet(name = "TempConverter", value = "/TempConverter")
 public class TempConverter extends HttpServlet {
+
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,23 +20,24 @@ public class TempConverter extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String temperature = request.getParameter("temperature");
-        String conversion = request.getParameter("conversion");
+            String temperature = request.getParameter("temperature");
+            String conversion = request.getParameter("conversion");
 
-        String result = "";
-        if(conversion.equals("celsius")){
-            result = convertCelsius(temperature);
-            request.setAttribute("result",result);
-        } else if (conversion.equals("fahrenheit")) {
-            result = convertFahrenheit(temperature);
-            request.setAttribute("result", result);
-        }else{
-            result = "An error has occured";
-            request.setAttribute("result",result);
+            String result = "";
+            if(conversion.equals("celsius")){
+                result = convertCelsius(temperature);
+                request.setAttribute("result",result);
+            } else if (conversion.equals("fahrenheit")) {
+                result = convertFahrenheit(temperature);
+                request.setAttribute("result", result);
+            }else{
+                result = "An error has occured";
+                request.setAttribute("result",result);
+            }
+
+            request.getRequestDispatcher("/WEB-INF/temp.jsp").forward(request,response);
         }
 
-        request.getRequestDispatcher("/WEB-INF/temp.jsp").forward(request,response);
-    }
     private boolean checkInput(String input){
         try{
             Double.parseDouble(input);
@@ -52,19 +55,19 @@ public class TempConverter extends HttpServlet {
     private String convertFahrenheit(String input){
         String result = "";
         double conversion = 0;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat decFormat = new DecimalFormat("#.##");
         if(checkInput(input)){
             Double startTemp = Double.parseDouble(input);
             conversion = ((startTemp * 9/5) + 32);
         }
         else{
-            return "Please enter a valid number";
+            return "Please enter a valid Temperature";
         }
 
         if(conversion < -459.67){
             result = "That is below absolute zero, please choose a larger value";
         }else{
-            result = df.format(conversion);
+            result = decFormat.format(conversion);
         }
         return result;
     }
@@ -72,21 +75,21 @@ public class TempConverter extends HttpServlet {
     private String convertCelsius(String input){
         String result = "";
         double conversion = 0;
-        DecimalFormat df = new DecimalFormat("#.##");
+        DecimalFormat decFormat = new DecimalFormat("#.##");
         if(checkInput(input)){
             double startTemp = Double.parseDouble(input);
             conversion = ((startTemp-32) * 5/9);
         }else{
-            return "Please enter a valid number";
+            return "Please enter a valid Temperature";
         }
 
         if(conversion < -273.15){
             result = "That is below absolute zero, please choose a larger value";
         }else{
-            result = df.format(conversion);
+            result = decFormat.format(conversion);
         }
         return result;
     }
+
+
 }
-
-
