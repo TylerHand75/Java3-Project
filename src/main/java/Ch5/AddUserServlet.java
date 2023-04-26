@@ -12,7 +12,7 @@ import java.util.Map;
 public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/ch5/add-user.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/Ch5/add-user.jsp").forward(request, response);
     }
 
     @Override
@@ -83,6 +83,6 @@ public class AddUserServlet extends HttpServlet {
             }
         }
         request.setAttribute("results", results);
-        request.getRequestDispatcher("WEB-INF/ch5/add-user.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/Ch5/add-user.jsp").forward(request, response);
     }
 }

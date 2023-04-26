@@ -1,5 +1,6 @@
 package Ch5;
 
+
 import dataAccess.UserDAO_MySQL;
 
 import javax.servlet.*;
@@ -25,7 +26,7 @@ public class ViewUsersServlet extends HttpServlet {
         request.setAttribute("users",user_data.getAll());
         User user = (User)session.getAttribute("user");
         if(user.getPrivileges().equals("admin")) {
-            request.getRequestDispatcher("WEB-INF/ch5/view-users.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/Ch5/view-users.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath()); // Send them to the homepage
         }

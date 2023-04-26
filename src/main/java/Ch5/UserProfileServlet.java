@@ -20,7 +20,7 @@ public class UserProfileServlet extends HttpServlet {
         AzureCommunication.sendMail(user.getEmail(), "Welcome to the site!", "Welcome to the site, " + user.getFirst_name()+ "" + user.getLast_name() + "!");
 
         session.setAttribute("example", new Example("Test"));
-        request.getRequestDispatcher("WEB-INF/ch5/user-profile.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/Ch5/user-profile.jsp").forward(request, response);
     }
 
     @Override
