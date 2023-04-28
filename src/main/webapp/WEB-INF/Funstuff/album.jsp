@@ -1,12 +1,14 @@
 <%@ page import="se.michaelthelin.spotify.model_objects.specification.Album" %>
 <%@ page import="java.util.List" %>
 <%@ page import="FunStuff.Spotify.MySpotify" %>
+<%@ page import="se.michaelthelin.spotify.model_objects.specification.AlbumSimplified" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+
     Album[] albums = (Album[]) request.getAttribute("albums");
     if (albums == null) {
-        MySpotify spotify = new MySpotify();
-        albums = spotify.getAlbums("artist");
+        MySpotify mySpotify = new MySpotify();
+        albums = mySpotify.getAlbums( "artistId");
         request.setAttribute("albums", albums);
     }
 %>
@@ -26,18 +28,19 @@
     <%
         Album[] albums1 = (Album[]) request.getAttribute("album");
         if (albums1 != null && albums1.length > 0) {
-            for (Album album : albums1) { %>
+            for (Album album : albums1) {
+    %>
     <tr>
         <td><img src="<%= album.getImages() %>"></td>
-        <td><a href="tracks?albumId=<%= album.getId() %>"><%= album.getName() %></a></td>
-
+        <td><a href="tracks?albumId=<%= album.getTracks() %>"><%= album.getName() %></a></td>
     </tr>
-<%
+    <%
             }
-        } else { %> <tr>
+        } else {
+    %>
+    <tr>
         <td>No albums found</td>
     </tr>
-
     <% } %>
 </table>
 

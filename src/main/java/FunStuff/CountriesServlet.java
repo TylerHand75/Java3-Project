@@ -24,18 +24,16 @@ public class CountriesServlet extends HttpServlet {
             try {
                 countriesCopy.add((Country)country.clone());
             } catch(CloneNotSupportedException e) {
-
+                e.printStackTrace();
             }
         }
-
 
         String show = request.getParameter("show");
         if(show == null) {
             show = "all";
         }
         if(!show.equalsIgnoreCase("all")) {
-            String showTemp = show;
-            String finalShow = showTemp.replaceAll("\\+", " "); // an effectively final variable that can be used with a lambda expression
+            String finalShow = show.replaceAll("\\+", " ");
             countriesCopy.removeIf(country -> !country.getContinent().equals(finalShow));
         }
 
@@ -48,7 +46,7 @@ public class CountriesServlet extends HttpServlet {
                 countriesCopy.sort((c1, c2) -> c1.getName().compareTo(c2.getName()));
                 break;
             case "alphaZA":
-                countriesCopy.sort((c1, c2) -> c1.getName().compareTo(c2.getName()) * -1);
+                countriesCopy.sort((c1, c2) -> c2.getName().compareTo(c1.getName()));
                 break;
             case "populationAsc":
                 countriesCopy.sort((c1, c2) -> c1.getPopulation() - c2.getPopulation());
@@ -59,20 +57,17 @@ public class CountriesServlet extends HttpServlet {
         }
 
         String search = request.getParameter("search");
-         if (search != null){
-             String finalSearch = search;
-             countriesCopy.removeIf(country -> !country.getName().toLowerCase().contains(finalSearch.toLowerCase()));
-         }else {
-             search = "";
-         }
-
-
-
+        if (search != null){
+            String finalSearch = search.toLowerCase();
+            countriesCopy.removeIf(country -> !country.getName().toLowerCase().contains(finalSearch));
+        } else {
+            search = "";
+        }
 
         request.setAttribute("search", search);
         request.setAttribute("show", show);
         request.setAttribute("sort", sort);
         request.setAttribute("countries", countriesCopy);
-        request.getRequestDispatcher("WEB-INF/Funstuff/Countries.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/Funstuff/Countries.jsp").forward(request, response);
     }
 }

@@ -13,7 +13,7 @@ public class TracksServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String albumId = request.getParameter("albumId");
-        String artistName = request.getParameter("Name");
+
         TrackSimplified[] tracks = MySpotify.getTracks(albumId);
         request.setAttribute("tracks", tracks);
         request.getRequestDispatcher("WEB-INF/Funstuff/tracks.jsp").forward(request, response);

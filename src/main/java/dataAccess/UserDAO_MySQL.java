@@ -1,14 +1,14 @@
 package dataAccess;
 
-import Ch5.User;
 
+import Ch5.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO_MySql implements DAO_MySql<User> {
+public class UserDAO_MySQL implements DAO_MySQL<User> {
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
         try(Connection connection = getConnection()) {
@@ -61,6 +61,7 @@ public class UserDAO_MySql implements DAO_MySql<User> {
                     user.setPasswordFromDB(password);
                     user.setStatus(status);
                     user.setPrivileges(privileges);
+                    user.setEmail(email);
                 }
                 resultSet.close();
                 statement.close();

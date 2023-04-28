@@ -62,12 +62,12 @@
 
 </header>
 <div class="container my-4">
-    <p class="lead">Showing <%= countries.size() %> countr<%= countries.size() == 1 ? "y" : "ies" %></p>
+    <p class="lead">Showing <%= countries.size() %> country <%= countries.size() == 1 ? "y" : "ies" %></p>
     <div class="row">
         <% for(Country country: countries) { %>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
             <div class="card mb-4" style="width: 18rem;">
-                <img src="https://flagcdn.com/.svg" class="card-img-top" alt="Flag of <%= country.getName()%>">
+                <img src="https://flagcdn.com/us.svg" class="card-img-top" alt="Flag of <%= country.getName() %>">
                 <div class="card-body">
                     <h5 class="card-title"><%= country.getName() %></h5>
                     <p class="card-text">Region: <%= country.getContinent() %>

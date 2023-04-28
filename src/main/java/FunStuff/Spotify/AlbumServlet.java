@@ -12,11 +12,12 @@ import java.io.IOException;
 public class AlbumServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String artistId = request.getParameter("artist");
-            String artists = request.getParameter("artists");
+           // String artistId = request.getParameter("artistid");
+
+            String artistId = request.getQueryString();
+            System.out.println("artistId = " + artistId);
             Album[] albums = MySpotify.getAlbums(artistId);
             request.setAttribute("albums", albums);
-            request.setAttribute("artists", artists);
             request.getRequestDispatcher("WEB-INF/Funstuff/album.jsp").forward(request, response);
         }
 

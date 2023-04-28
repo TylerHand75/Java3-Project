@@ -19,12 +19,14 @@
 <ul>
     <li><a href="view-users">View Users</a></li>
     <li><a href="signup">Add User</a></li>
+
 </ul>
 <h3>Fun Stuff</h3>
 <ul>
     <li><a href="countries"> Countries</a></li>
     <li><a href="artist">Spotify App</a></li>
     <li><a href="chat">Chat App</a></li>
+    <li><a href="tictactoe">Tic Tac Toe</a></li>
 </ul>
 
 </body>

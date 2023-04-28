@@ -44,16 +44,6 @@ public class MySpotify {
         accessToken = clientCredentials.getAccessToken();
         return accessToken;
     }
-    private static SpotifyApi getSpotifyApi() {
-        Dotenv dotenv = Dotenv.load();
-        String clientId = dotenv.get("SPOTIFY_CLIENT_ID");
-        String clientSecret = dotenv.get("SPOTIFY_CLIENT_SECRET");
-        SpotifyApi spotifyApi = new SpotifyApi.Builder()
-                .setClientId(clientId)
-                .setClientSecret(clientSecret)
-                .build();
-        return spotifyApi;
-    }
 
     public static Artist[] searchArtists(String q) {
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
@@ -112,6 +102,13 @@ public class MySpotify {
         return albums;
     }
 
+    private static SpotifyApi getSpotifyApi() {
+        SpotifyApi spotifyApi = new SpotifyApi.Builder()
+                .setAccessToken(getAccessToken())
+                .build();
+        return spotifyApi;
+    }
+
 
     public static TrackSimplified[] getTracks(String albumID){
         SpotifyApi spotifyApi = getSpotifyApi();
@@ -132,9 +129,6 @@ public class MySpotify {
 
         return tracks;
     }
-
-
-
 
 
 }
