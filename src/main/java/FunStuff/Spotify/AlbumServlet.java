@@ -1,6 +1,7 @@
 package FunStuff.Spotify;
 
 import se.michaelthelin.spotify.model_objects.specification.Album;
+import se.michaelthelin.spotify.model_objects.specification.AlbumSimplified;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
