@@ -8,13 +8,11 @@ import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
 import se.michaelthelin.spotify.model_objects.specification.*;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
-import se.michaelthelin.spotify.requests.data.artists.GetArtistsAlbumsRequest;
+import se.michaelthelin.spotify.requests.data.search.simplified.SearchAlbumsRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchArtistsRequest;
+import se.michaelthelin.spotify.requests.data.search.simplified.SearchTracksRequest;
 
-import javax.sound.midi.Track;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -58,76 +56,58 @@ public class MySpotify {
         Artist[] artists = null;
         try {
             final CompletableFuture<Paging<Artist>> pagingFuture = searchArtistsRequest.executeAsync();
-
-            // Thread free to do other tasks...
-
-            // Example Only. Never block in production code.
             final Paging<Artist> artistPaging = pagingFuture.join();
             artists = artistPaging.getItems();
         } catch (CompletionException e) {
-            System.out.println("Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {
-            System.out.println("Async operation cancelled.");
         }
         return artists;
     }
 
-    public static Album[] getAlbums(String artistID){
-        SpotifyApi spotifyApi = getSpotifyApi();
-        Album[] albums = null;
 
-        GetArtistsAlbumsRequest getArtistsAlbumsRequest = spotifyApi.getArtistsAlbums(artistID)
+    public static AlbumSimplified[] getAlbums(String artistId){
+        SpotifyApi spotifyApi = new SpotifyApi.Builder()
+                .setAccessToken(getAccessToken()).build();
+        SearchAlbumsRequest artistsAlbumsRequest = spotifyApi.searchAlbums(artistId)
+                /*
                 .album_type("album")
-                .limit(50)
+                .limit(10)
                 .offset(0)
+                .market(CountryCode.SE)
+                 */
                 .build();
-
-        try {
-            Paging<AlbumSimplified> albumPaging = getArtistsAlbumsRequest.execute();
-            ArrayList<Album> albumList = new ArrayList<>();
-
-            for (AlbumSimplified albumSimplified : albumPaging.getItems()) {
-                String albumID = albumSimplified.getId();
-                Album album = spotifyApi.getAlbum(albumID).build().execute();
-                albumList.add(album);
-            }
-
-            albums = albumList.toArray(new Album[0]);
-
-        } catch (IOException | SpotifyWebApiException e) {
-            System.out.println("Error: " + e.getMessage());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
+        AlbumSimplified[] albums = null;
+        try{
+            final CompletableFuture<Paging<AlbumSimplified>> pagingFuture = artistsAlbumsRequest.executeAsync();
+            final  Paging<AlbumSimplified> albumSimplifiedPaging =pagingFuture.join();
+            albums = albumSimplifiedPaging.getItems();
+        }catch (CompletionException e){
+        }
+        catch (CancellationException e){
         }
         return albums;
     }
 
-    private static SpotifyApi getSpotifyApi() {
+    public static Track[] getTracks(String albumId){
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
-                .setAccessToken(getAccessToken())
+                .setAccessToken(getAccessToken()).build();
+        SearchTracksRequest getSearchTracksRequest = spotifyApi.searchTracks(albumId)
+                //.limit(10)
+                //.offset(0)
+                //.market(CountryCode.SE)
                 .build();
-        return spotifyApi;
-    }
-
-
-    public static TrackSimplified[] getTracks(String albumID){
-        SpotifyApi spotifyApi = getSpotifyApi();
-        TrackSimplified[] tracks = null;
-
+        Track[] tracks = null;
         try {
-            Paging<TrackSimplified> trackPaging = spotifyApi.getAlbumsTracks(albumID)
-                    //.market(CountryCode.US)
-                    .limit(50)
-                    .offset(0)
-                    .build().execute();
-
+            final CompletableFuture<Paging<Track>> pagingFuture = getSearchTracksRequest.executeAsync();
+            final Paging<Track> trackPaging = pagingFuture.join();
             tracks = trackPaging.getItems();
-
-        } catch (IOException | SpotifyWebApiException | ParseException e) {
-            System.out.println("Error: " + e.getMessage());
         }
-
+        catch (CompletionException e) {
+        }
+        catch (CancellationException e){
+        }
         return tracks;
+
     }
 
 
