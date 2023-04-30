@@ -4,6 +4,7 @@ public class Country implements Comparable<Country>, Cloneable {
     private String name;
     private String continent;
     private int population;
+    private String abbreviation;
 
     public Country() {
         this("Unknown", "Unknown", 0);
@@ -39,6 +40,21 @@ public class Country implements Comparable<Country>, Cloneable {
         this.population = population;
     }
 
+
+    public String getAbbreviation() {
+        String[] words = name.split(" ");
+        StringBuilder abbreviation = new StringBuilder();
+        for (String word : words) {
+            abbreviation.append(word.charAt(0));
+            abbreviation.append(word.charAt(1));
+        }
+        return abbreviation.toString().toUpperCase();
+    }
+    public void setAbbreviation(String abbreviation) {
+        this.abbreviation = abbreviation;
+    }
+
+
     @Override
     public int compareTo(Country o) {
         return this.name.compareTo(o.name);
@@ -48,4 +64,6 @@ public class Country implements Comparable<Country>, Cloneable {
     protected Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
+
 }

@@ -1,6 +1,5 @@
-
-<%@ page import="java.util.List" %>
 <%@ page import="FunStuff.Country" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     List<Country> countries = (List<Country>)request.getAttribute("countries");
@@ -62,12 +61,12 @@
 
 </header>
 <div class="container my-4">
-    <p class="lead">Showing <%= countries.size() %> country <%= countries.size() == 1 ? "y" : "ies" %></p>
+    <p class="lead">Showing <%= countries.size() %> countr <%= countries.size() == 1 ? "y" : "ies" %></p>
     <div class="row">
         <% for(Country country: countries) { %>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
             <div class="card mb-4" style="width: 18rem;">
-                <img src="https://flagcdn.com/us.svg" class="card-img-top" alt="Flag of <%= country.getName() %>">
+                <img src="https://flagcdn.com/<%=country.getAbbreviation().toLowerCase()%>.svg" class="card-img-top" alt="Flag of <%= country.getName() %>" height="200">
                 <div class="card-body">
                     <h5 class="card-title"><%= country.getName() %></h5>
                     <p class="card-text">Region: <%= country.getContinent() %>
@@ -75,8 +74,7 @@
                     <button type="button" class="btn btn-primary btn-open" data-bs-toggle="modal" data-bs-target="#countryModal"
                             data-title="<%= country.getName() %>"
                             data-population="<%= country.getPopulation() %>"
-                            data-region="<%= country.getContinent() %>"
-                    >
+                            data-region="<%= country.getContinent() %>">
                         Show more
                     </button>
                 </div>
@@ -86,19 +84,21 @@
     </div>
 </div>
 
-<div class="modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+<div class=" modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
+    <% for(Country country: countries) { %>
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="countryModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="countryModalLabel"><%= country.getName() %></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Region: <span class="modal-region"></span>
-                    <br>Population: <span class="modal-population"></span></p>
+                <p>Region: <span class="modal-region"> <%= country.getContinent()%> </span>
+                    <br>Population: <span class="modal-population"> <%= country.getPopulation() %></span></p>
             </div>
         </div>
     </div>
+    <% } %>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
@@ -107,6 +107,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
-<script src="scripts/countries.js"></script>
+<script src="countries.js"></script>
 </body>
 </html>

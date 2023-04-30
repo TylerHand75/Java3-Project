@@ -32,6 +32,9 @@ public class CountryDAO_CSV {
             System.out.println("File not found");
         }
         Collections.sort(countries);
+        for (Country country : countries) {
+            String abbreviation = country.getAbbreviation();
+        }
         return countries;
     }
 
