@@ -29,5 +29,9 @@
     <li><a href="tictactoe">Tic Tac Toe</a></li>
 </ul>
 
+<ul>
+    <li><a href="newsletter">Newsletter</a></li>
+</ul>
+
 </body>
 </html>

@@ -5,7 +5,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "AddUserServlet", value = "/signup")
