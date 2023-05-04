@@ -19,6 +19,8 @@
 <ul>
     <li><a href="view-users">View Users</a></li>
     <li><a href="signup">Add User</a></li>
+    <li><a href="login">Login</a></li>
+    <li><a href="logout">Logout</a></li>
 
 </ul>
 <h3>Fun Stuff</h3>
@@ -27,6 +29,10 @@
     <li><a href="artist">Spotify App</a></li>
     <li><a href="chat">Chat App</a></li>
     <li><a href="tictactoe">Tic Tac Toe</a></li>
+</ul>
+
+<ul>
+    <li><a href="newsletter">Newsletter</a></li>
 </ul>
 
 </body>
