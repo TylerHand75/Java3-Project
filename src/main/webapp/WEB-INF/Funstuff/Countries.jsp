@@ -101,7 +101,21 @@
                     <br>Capital: <span class="modal-capital"> <%= country.getCapital() %></span></br>
                     <br>Capital Latitude: <span class="modal-native-name"> <%= country.getCapitalLat() %></span></br>
                     <br>Capital Longitude: <span class="modal-native-name"> <%= country.getCapitalLong() %></span></br>
-                    <br>Google Map: <img src=" <%= country.getGoogleMapsURL() %>" width="200" height="200"> </br>
+                    <iframe
+                            width="100%"
+                            height="480"
+                            frameborder="0"
+                            scrolling="no"
+                            marginheight="0"
+                            marginwidth="0"
+                            src="https://maps.google.com/maps?q=-15.79,-47.88&amp;z=4&amp;output=embed"
+                    ></iframe>
+                    <br>
+                    <a
+                            href="https://www.google.com/maps/<%=country.getCapitalLat() %>,<%= country.getCapitalLong() %>"
+                            target="_blank">
+                        See full page map
+                    </a>
                 </p>
 
             </div>

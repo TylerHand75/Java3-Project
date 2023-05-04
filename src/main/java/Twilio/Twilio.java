@@ -6,11 +6,12 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import io.github.cdimascio.dotenv.Dotenv;
 
+import java.util.Random;
+
 public class Twilio {
     private String fromPhone;
     private String sid;
     private String secretKey;
-
 
     public Twilio() {
         Dotenv dotenv = Dotenv.load();
@@ -20,9 +21,7 @@ public class Twilio {
     }
 
     public String sendPhoneCall(String toPhone, String callMsg) {
-
-        try{
-
+        try {
             Call call = Call.creator(
                             new com.twilio.type.PhoneNumber(toPhone),
                             new com.twilio.type.PhoneNumber(fromPhone),
@@ -30,10 +29,9 @@ public class Twilio {
                     .create();
 
             return "Phone call successfully made";
-        }catch(ApiException e){
+        } catch (ApiException e) {
             return e.getMessage();
         }
-
     }
 
     public String sendTextMessage(String phone, String msg) {
@@ -58,7 +56,6 @@ public class Twilio {
         return phone;
     }
 
-
     public boolean isValidMessage(String message) {
         if (message.contains("fu**")) {
             return false;
@@ -73,5 +70,28 @@ public class Twilio {
         return false;
     }
 
+    public String sendTwoFactorCode(String phone) {
+        com.twilio.Twilio.init(sid, secretKey);
+        if (!isValidUsPhoneNumber(phone)) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
+        if (phone.charAt(0) != '1') {
+            phone = "1" + phone;
+        }
 
+        // generate a 6-digit code
+        String code = String.format("%06d", new Random().nextInt(999999));
+
+        // send the code via SMS
+        try {
+            Message message = Message.creator(new PhoneNumber("+" + phone),
+                    new PhoneNumber(fromPhone),
+                    "Your verification code is: " + code).create();
+        } catch (ApiException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+
+        return code;
+    }
 }
+
