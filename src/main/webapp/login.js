@@ -1,23 +1,20 @@
-$(function() {
-    const rememberMeBtn = $("#remember-me");
-    const emailFormInput = $("#email");
+$(function(){
+    const rememberMeCheckbox = $("#remember-me");
+    const emailTextInput = $("#email");
     const loginForm = $("#login-form");
-    emailFormInput.val(localStorage.getItem("emailStored"));
-    if(localStorage.getItem("rememberMe") === "true") {
-        rememberMeBtn.prop('checked', true);
+    if(localStorage.getItem("myEmail")) {
+        rememberMeCheckbox.prop("checked", true);
+        emailTextInput.val(localStorage.getItem("myEmail"));
     } else {
-        rememberMeBtn.prop('checked', false);
+        rememberMeCheckbox.prop("checked", false);
     }
 
-    loginForm.on("submit", function(event) {
+    loginForm.submit(function(event) {
         event.preventDefault();
-        // if (rememberMeBtn.prop('checked')) {
-        if (rememberMeBtn.is(":checked")) {
-            localStorage.setItem("emailStored", emailFormInput.val());
-            localStorage.setItem("rememberMe", "true");
+        if(rememberMeCheckbox.is(":checked")) {
+            localStorage.setItem("myEmail", emailTextInput.val());
         } else {
-            localStorage.removeItem("emailStored");
-            localStorage.removeItem("rememberMe")
+            localStorage.removeItem("myEmail");
         }
         event.currentTarget.submit();
     });

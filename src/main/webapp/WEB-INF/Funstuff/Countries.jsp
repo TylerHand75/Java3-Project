@@ -49,11 +49,12 @@
                         Sort
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                        <li><a class="dropdown-item" href="countries<%= show %>&sort=alphaAZ">Alphabetical (A to Z)</a></li>
-                        <li><a class="dropdown-item" href="countries<%= show %>&sort=alphaZA">Alphabetical (Z to A)</a></li>
-                        <li><a class="dropdown-item" href="countries<%= show %>&sort=populationAsc">Population (Low to High)</a></li>
-                        <li><a class="dropdown-item" href="countries<%= show %>&sort=populationDesc">Population (High to Low)</a></li>
+                        <li><a class="dropdown-item " href="countries<%= show %>&sort=alphaAZ">Alphabetical (A to Z)</a></li>
+                        <li><a class="dropdown-item " href="countries<%= show %>&sort=alphaZA">Alphabetical (Z to A)</a></li>
+                        <li><a class="dropdown-item " href="countries<%= show %>&sort=populationAsc"  >Population (Low to High)</a></li>
+                        <li><a class="dropdown-item " href="countries<%= show %>&sort=populationDesc" >Population (High to Low)</a></li>
                     </ul>
+
                 </div>
             </div>
         </div>
@@ -61,7 +62,7 @@
 
 </header>
 <div class="container my-4">
-    <p class="lead">Showing <%= countries.size() %> countr <%= countries.size() == 1 ? "y" : "ies" %></p>
+    <p class="lead">Showing <%= countries.size() %> countr<%= countries.size() == 1 ? "y" : "ies" %></p>
     <div class="row">
         <% for(Country country: countries) { %>
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -93,8 +94,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Region: <span class="modal-region"> <%= country.getContinent()%> </span>
-                    <br>Population: <span class="modal-population"> <%= country.getPopulation() %></span></p>
+                <p>Region: <span class="modal-region"> <%= country.getContinent()%> </span></br>
+                    <br>Population: <span class="modal-population"> <%= country.getPopulation() %></span></br>
+                    <br>Area: <span class="modal-area"> <%= country.getArea() %></span></br>
+                    <br>Sub Region: <span class="modal-native-name"> <%= country.getSubRegion() %></span></br>
+                    <br>Capital: <span class="modal-capital"> <%= country.getCapital() %></span></br>
+                    <br>Capital Latitude: <span class="modal-native-name"> <%= country.getCapitalLat() %></span></br>
+                    <br>Capital Longitude: <span class="modal-native-name"> <%= country.getCapitalLong() %></span></br>
+                    <br>Google Map: <img src=" <%= country.getGoogleMapsURL() %>" width="200" height="200"> </br>
+                </p>
+
             </div>
         </div>
     </div>
