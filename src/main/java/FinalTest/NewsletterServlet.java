@@ -7,7 +7,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.*;
 // STEP 1: Define the servlet's url path
-@WebServlet(name = "NewsletterServlet", value = "newsletter")
+@WebServlet(name = "NewsletterServlet", value = "/newsletter")
 public class NewsletterServlet extends HttpServlet {
     private static final Set<String> subscribers = Collections.synchronizedSet(new HashSet<>());
     @Override
