@@ -9,7 +9,7 @@
 <br/>
 <h3>Chapter 3 and 4</h3>
 <ul>
-    <li> <a href="add">Add</a></li>
+    <li><a href="add">Add</a></li>
     <li><a href="temp">Temperature Converter </a></li>
     <li><a href="Bmi">Bmi Converter </a></li>
     <li><a href="send-message">Send that Message bois</a></li>
@@ -17,11 +17,23 @@
 </ul>
 <h3>Chapter 5</h3>
 <ul>
-    <li><a href="view-users">View Users</a></li>
     <li><a href="signup">Add User</a></li>
     <li><a href="login">Login</a></li>
+    <%
+        if (request.getSession().getAttribute("user") != null) {
+            if (request.getSession().getAttribute("admin") != null) { %>
+    <li><a href="view-users">View Users</a></li>
+    <% } %>
     <li><a href="profile">User Profile</a></li>
     <li><a href="logout">Logout</a></li>
+    <% } else { %>
+    <%
+        if (request.getSession().getAttribute("user") != null) { %>
+    <li><a href="profile">User Profile</a></li>
+    <li><a href="logout">Logout</a></li>
+    <% } %>
+    <% } %>
+
 
 </ul>
 <h3>Fun Stuff</h3>
