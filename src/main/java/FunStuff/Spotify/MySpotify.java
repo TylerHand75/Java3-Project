@@ -8,6 +8,7 @@ import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.credentials.ClientCredentials;
 import se.michaelthelin.spotify.model_objects.specification.*;
 import se.michaelthelin.spotify.requests.authorization.client_credentials.ClientCredentialsRequest;
+import se.michaelthelin.spotify.requests.data.artists.GetArtistsAlbumsRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchAlbumsRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchArtistsRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchTracksRequest;
@@ -42,24 +43,16 @@ public class MySpotify {
         accessToken = clientCredentials.getAccessToken();
         return accessToken;
     }
-
     public static Artist[] searchArtists(String q) {
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setAccessToken(getAccessToken())
                 .build();
         SearchArtistsRequest searchArtistsRequest = spotifyApi.searchArtists(q)
                 .market(CountryCode.US)
-//          .limit(10)
-//          .offset(0)
-//          .includeExternal("audio")
                 .build();
         Artist[] artists = null;
         try {
             final CompletableFuture<Paging<Artist>> pagingFuture = searchArtistsRequest.executeAsync();
-
-            // Thread free to do other tasks...
-
-            // Example Only. Never block in production code.
             final Paging<Artist> artistPaging = pagingFuture.join();
             artists = artistPaging.getItems();
         } catch (CompletionException e) {
@@ -69,76 +62,49 @@ public class MySpotify {
         }
         return artists;
     }
-
-
-    public static AlbumSimplified[] getAlbum(String artistName){
+    public static AlbumSimplified[] getAlbum(String artistName) {
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setAccessToken(getAccessToken()).build();
-
         SearchAlbumsRequest artistsAlbumsRequest = spotifyApi.searchAlbums(artistName)
-                /*
-                .album_type("album")
-                .limit(10)
+                //.album_type("album")
+                .limit(20)
                 .offset(0)
-                .market(CountryCode.SE)
-                 */
+                .market(CountryCode.US)
                 .build();
         AlbumSimplified[] albums = null;
-        try{
+        try {
             final CompletableFuture<Paging<AlbumSimplified>> pagingFuture = artistsAlbumsRequest.executeAsync();
-
-            //Other tasks
-
-            final  Paging<AlbumSimplified> albumSimplifiedPaging =pagingFuture.join();
-
+            final Paging<AlbumSimplified> albumSimplifiedPaging = pagingFuture.join();
             albums = albumSimplifiedPaging.getItems();
-
             System.out.println("Total: " + albumSimplifiedPaging.getTotal());
-
-        }catch (CompletionException e){
+        } catch (CompletionException e) {
             System.out.println("Error: " + e.getCause().getMessage());
 
-        }
-        catch (CancellationException e){
+        } catch (CancellationException e) {
             System.out.println("Async operation cancelled.");
         }
-
-
-
-
         return albums;
     }
-
-    public static Track[] getTracks(String albumId){
+    public static Track[] getTracks(String albumId) {
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setAccessToken(getAccessToken()).build();
-
         SearchTracksRequest getSearchTracksRequest = spotifyApi.searchTracks(albumId)
-                //.limit(10)
-                //.offset(0)
-                //.market(CountryCode.SE)
+                .limit(30)
+                .offset(0)
+                .market(CountryCode.US)
                 .build();
         Track[] tracks = null;
-
         try {
             final CompletableFuture<Paging<Track>> pagingFuture = getSearchTracksRequest.executeAsync();
-
-
-
             final Paging<Track> trackPaging = pagingFuture.join();
             System.out.println("Total: " + trackPaging.getTotal());
             tracks = trackPaging.getItems();
-        }
-        catch (CompletionException e){
+        } catch (CompletionException e) {
             System.out.println("Error: " + e.getCause().getMessage());
-
-        }
-        catch (CancellationException e){
+        } catch (CancellationException e) {
             System.out.println("Async operation cancelled.");
         }
         return tracks;
-
     }
-
 }
 

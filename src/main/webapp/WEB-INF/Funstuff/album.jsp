@@ -11,13 +11,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CHANGE THE TITLE</title>
+    <title>Albums</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/spotify.css">
 </head>
-
-
-
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <div class="container-fluid">
@@ -28,7 +26,6 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
             </ul>
-
         </div>
         <form> <!-- https://stackoverflow.com/questions/4629606/input-type-back-button -->
             <input class="btn btn-dark" type="button" value="Back" onclick="history.back()">
@@ -63,7 +60,7 @@
 
                 <% } %>
             </td>
-            <td><a href="tracks?albumId=<%= album.getId()%>&albumName=<%=album.getName()%>&artistName=<%=artistName%>"/><%=album.getName()%></td>
+            <td><a class="cool-text" href="tracks?albumId=<%= album.getId()%>&albumName=<%=album.getName()%>&artistName=<%=artistName%>"/><%=album.getName()%></td>
         </tr>
         <% } %>
         </tbody>

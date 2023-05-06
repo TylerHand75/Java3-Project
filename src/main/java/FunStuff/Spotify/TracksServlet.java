@@ -15,9 +15,16 @@ public class TracksServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String albumId = request.getParameter("albumId");
-        Track[] tracks = MySpotify.getTracks(albumId);
+        String albumName = request.getParameter("albumName");
+        if(albumId == null){
+            albumId = "Fail";
+        }
+
+        request.setAttribute("albumName", albumName);
+        request.setAttribute("albumId", albumId);
+        Track[] tracks = MySpotify.getTracks(albumName);
         request.setAttribute("tracks", tracks);
-        request.getRequestDispatcher("WEB-INF/Funstuff/tracks.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/Funstuff/tracks.jsp").forward(request,response);
     }
 
 

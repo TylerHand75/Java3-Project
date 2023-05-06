@@ -13,6 +13,7 @@
     <title>Spotify Artist Search</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/spotify.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -25,7 +26,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
             </ul>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search by artist" aria-label="Search" name="q" value="<%= q %>">
+                <input class="form-control me-2 " type="search" placeholder="Search by artist" aria-label="Search" name="q" value="<%= q %>">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
@@ -64,7 +65,7 @@
 
                 <% } %>
             </td>
-            <td><a href="albums?artistID=<%= artist.getId()%>&artistName=<%=artist.getName()%>"/><%= artist.getName() %></td>
+            <td><a class="cool-text" href="albums?artistID=<%= artist.getId()%>&artistName=<%=artist.getName()%>"/><%= artist.getName() %></td>
             <td>
                 <% for(String genre: artist.getGenres()) { %>
                 <%= WordUtils.capitalize(genre) %><br>

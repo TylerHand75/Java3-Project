@@ -1,0 +1,60 @@
+.cool-text {
+    display: inline-block;
+    position: relative;
+    color: #fff;
+    text-shadow: 0 0 5px #486e3d, 0 0 10px #486e3d, 0 0 15px #486e3d, 0 0 20px #486e3d, 0 0 25px #486e3d, 0 0 30px #486e3d;
+}
+.navbar {
+    background-color: #2E7D32;
+}
+
+.navbar-brand {
+    color: #FFFFFF;
+}
+
+.nav-link {
+    color: #FFFFFF;
+}
+
+.form-control {
+    background-color: #FFFFFF;
+    color: #2E7D32;
+}
+
+.btn-outline-success {
+    background-color: #2E7D32;
+    border-color: #2E7D32;
+    color: #FFFFFF;
+}
+
+/* Table */
+.table {
+    background-color: #FFFFFF;
+}
+
+.table th {
+    background-color: #2E7D32;
+    color: #FFFFFF;
+}
+
+.table td {
+    color: #000000;
+}
+
+.table .table-group-divider > tr > td {
+    border-bottom: 1px solid #2E7D32;
+}
+
+.btn-success {
+    background-color: #2E7D32;
+    border-color: #2E7D32;
+}
+
+.btn-success:hover {
+    background-color: #3E8E41;
+    border-color: #3E8E41;
+}
+body {
+    background-color: #000000;
+    color: white;
+}
