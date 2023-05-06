@@ -5,11 +5,12 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
+import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 @WebServlet(name = "AddUserServlet", value = "/signup")
 public class AddUserServlet extends HttpServlet {
     @Override
@@ -88,3 +89,5 @@ public class AddUserServlet extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/Ch5/add-user.jsp").forward(request, response);
     }
 }
+
+

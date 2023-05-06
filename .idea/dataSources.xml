@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@hand-finalproject.mysql.database.azure.com" uuid="6cb405ab-9fb2-4923-b7b0-64f270ef7130">
+    <data-source source="LOCAL" name="@hand-finalproject.mysql.database.azure.com" uuid="ed5ae8f1-dc28-4acc-ada3-850ecb3da56e">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

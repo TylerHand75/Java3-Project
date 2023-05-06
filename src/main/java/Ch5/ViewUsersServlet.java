@@ -25,7 +25,7 @@ public class ViewUsersServlet extends HttpServlet {
         UserDAO_MySQL user_data = new UserDAO_MySQL();
         request.setAttribute("users",user_data.getAll());
         User user = (User)session.getAttribute("user");
-        if(user.getPrivileges().equals("admin")) {
+        if(user.getPrivileges().equals("none")) {
             request.getRequestDispatcher("WEB-INF/Ch5/view-users.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath()); // Send them to the homepage

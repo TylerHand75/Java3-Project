@@ -12,19 +12,24 @@ public class UserProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if (session.getAttribute("user") == null) {
+        if(session.getAttribute("user") == null) {
             response.sendRedirect("login");
             return;
         }
-        User user = (User) session.getAttribute("user");
-        AzureCommunication.sendMail(user.getEmail(), "Welcome to the site!", "Welcome to the site, " + user.getFirst_name()+ "" + user.getLast_name() + "!");
-
-        session.setAttribute("example", new Example("Test"));
         request.getRequestDispatcher("WEB-INF/Ch5/user-profile.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        String formName = request.getParameter("name");
+        if(formName.equals("testEmail")) {
+            AzureCommunication.sendMail(user.getEmail(),
+                    "This is a test",
+                    "Dear " + user.getFirst_name() + ", this is the test you requested from our website");
+            request.setAttribute("emailSentMsg", "<div class=\"alert alert-success\">Message sent. Please check your email.</div>");
+        }
+        request.getRequestDispatcher("WEB-INF/Ch5/user-profile.jsp").forward(request, response);
     }
 }

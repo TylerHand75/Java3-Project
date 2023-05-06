@@ -56,19 +56,26 @@ public class MySpotify {
         Artist[] artists = null;
         try {
             final CompletableFuture<Paging<Artist>> pagingFuture = searchArtistsRequest.executeAsync();
+
+            // Thread free to do other tasks...
+
+            // Example Only. Never block in production code.
             final Paging<Artist> artistPaging = pagingFuture.join();
             artists = artistPaging.getItems();
         } catch (CompletionException e) {
+            System.out.println("Error: " + e.getCause().getMessage());
         } catch (CancellationException e) {
+            System.out.println("Async operation cancelled.");
         }
         return artists;
     }
 
 
-    public static AlbumSimplified[] getAlbums(String artistId){
+    public static AlbumSimplified[] getAlbum(String artistName){
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setAccessToken(getAccessToken()).build();
-        SearchAlbumsRequest artistsAlbumsRequest = spotifyApi.searchAlbums(artistId)
+
+        SearchAlbumsRequest artistsAlbumsRequest = spotifyApi.searchAlbums(artistName)
                 /*
                 .album_type("album")
                 .limit(10)
@@ -79,37 +86,59 @@ public class MySpotify {
         AlbumSimplified[] albums = null;
         try{
             final CompletableFuture<Paging<AlbumSimplified>> pagingFuture = artistsAlbumsRequest.executeAsync();
+
+            //Other tasks
+
             final  Paging<AlbumSimplified> albumSimplifiedPaging =pagingFuture.join();
+
             albums = albumSimplifiedPaging.getItems();
+
+            System.out.println("Total: " + albumSimplifiedPaging.getTotal());
+
         }catch (CompletionException e){
+            System.out.println("Error: " + e.getCause().getMessage());
+
         }
         catch (CancellationException e){
+            System.out.println("Async operation cancelled.");
         }
+
+
+
+
         return albums;
     }
 
     public static Track[] getTracks(String albumId){
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setAccessToken(getAccessToken()).build();
+
         SearchTracksRequest getSearchTracksRequest = spotifyApi.searchTracks(albumId)
                 //.limit(10)
                 //.offset(0)
                 //.market(CountryCode.SE)
                 .build();
         Track[] tracks = null;
+
         try {
             final CompletableFuture<Paging<Track>> pagingFuture = getSearchTracksRequest.executeAsync();
+
+
+
             final Paging<Track> trackPaging = pagingFuture.join();
+            System.out.println("Total: " + trackPaging.getTotal());
             tracks = trackPaging.getItems();
         }
-        catch (CompletionException e) {
+        catch (CompletionException e){
+            System.out.println("Error: " + e.getCause().getMessage());
+
         }
         catch (CancellationException e){
+            System.out.println("Async operation cancelled.");
         }
         return tracks;
 
     }
-
 
 }
 

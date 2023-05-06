@@ -1,6 +1,5 @@
 <%@ page import="se.michaelthelin.spotify.model_objects.specification.Artist" %>
 <%@ page import="org.apache.commons.text.WordUtils" %>
-<%@ page import="se.michaelthelin.spotify.model_objects.specification.Followers" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String q = (String)request.getAttribute("artist");
@@ -51,37 +50,32 @@
             <th scope="col">Genres</th>
             <th scope="col">Followers</th>
             <th scope="col">Popularity</th>
-            <th scope="col">Information</th>
-
+            <th scope="col">Spotify</th>
         </tr>
         </thead>
         <tbody class="table-group-divider">
         <% for(Artist artist: artists) { %>
         <tr>
             <td>
-                <% if(artist.getImages().length > 0) { %>
-                <img src="<%= artist.getImages()[0].getUrl() %>" width="100" alt="<%= artist.getName() %>">
+                <% if (artist.getImages().length > 0) { %>
+                <img src="<%=artist.getImages()[0].getUrl()%>" alt="<%=artist.getName()%>" width="100"/>
                 <% } else { %>
-                <img src="https://picsum.photos/id/56/100/75" alt="<%= artist.getName() %>">
+                <img src="https://picsum.photos/id/29/4000/2670" alt="<%=artist.getName()%>" width="100"/>
+
                 <% } %>
             </td>
-            <td ><a class="btn  btn-outline-success"  role="button"  href="albums?<%=artist.getId()%>"> <%= artist.getName()%> </a></td>
+            <td><a href="albums?artistID=<%= artist.getId()%>&artistName=<%=artist.getName()%>"/><%= artist.getName() %></td>
             <td>
                 <% for(String genre: artist.getGenres()) { %>
                 <%= WordUtils.capitalize(genre) %><br>
                 <% } %>
             </td>
             <td class="text-end">
-                <%= String.format("%,.0f", (double)artist.getFollowers().getTotal()) %>
-
+                <%=String.format("%,.0f", (double)artist.getFollowers().getTotal())%>
             </td>
-            <td class="text-end">
-                <%= String.format("%,.1f", (double)artist.getPopularity()) + "%"  %>
-
-            </td>
+            <td class="text-end"> <%= artist.getPopularity()%> of 100</td>
             <td>
-                <a class="btn btn-outline-info btn-sm"  href="<%=artist.getExternalUrls().getExternalUrls().get("spotify")%>"
-                   target="_blank" role="button">See More Info</a>
+                <a class="btn btn-success" href="<%=artist.getExternalUrls().getExternalUrls().get("spotify")%>" target="_blank" role="button">See more info</a>
             </td>
         </tr>
         <% } %>

@@ -20,6 +20,7 @@
     <li><a href="view-users">View Users</a></li>
     <li><a href="signup">Add User</a></li>
     <li><a href="login">Login</a></li>
+    <li><a href="profile">User Profile</a></li>
     <li><a href="logout">Logout</a></li>
 
 </ul>

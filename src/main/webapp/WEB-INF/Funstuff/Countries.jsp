@@ -75,7 +75,8 @@
                     <button type="button" class="btn btn-primary btn-open" data-bs-toggle="modal" data-bs-target="#countryModal"
                             data-title="<%= country.getName() %>"
                             data-population="<%= country.getPopulation() %>"
-                            data-region="<%= country.getContinent() %>">
+                            data-region="<%= country.getContinent() %>"
+                            >
                         Show more
                     </button>
                 </div>
@@ -97,10 +98,10 @@
                 <p>Region: <span class="modal-region"> <%= country.getContinent()%> </span></br>
                     <br>Population: <span class="modal-population"> <%= country.getPopulation() %></span></br>
                     <br>Area: <span class="modal-area"> <%= country.getArea() %></span></br>
-                    <br>Sub Region: <span class="modal-native-name"> <%= country.getSubRegion() %></span></br>
+                    <br>Sub Region: <span class="modal-subregion"> <%= country.getSubRegion() %></span></br>
                     <br>Capital: <span class="modal-capital"> <%= country.getCapital() %></span></br>
-                    <br>Capital Latitude: <span class="modal-native-name"> <%= country.getCapitalLat() %></span></br>
-                    <br>Capital Longitude: <span class="modal-native-name"> <%= country.getCapitalLong() %></span></br>
+                    <br>Capital Latitude: <span class="modal-capital-lat"> <%= country.getCapitalLat() %></span></br>
+                    <br>Capital Longitude: <span class="modal-capital-ling"> <%= country.getCapitalLong() %></span></br>
                     <iframe
                             width="100%"
                             height="480"

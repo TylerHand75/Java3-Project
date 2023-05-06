@@ -14,19 +14,11 @@ public class AlbumServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String artistId = request.getParameter("artistId");
-        if(artistId == null){
-            artistId = "artistId";
-        }
-        request.setAttribute("artistId", artistId);
-        AlbumSimplified[] albums = MySpotify.getAlbums(artistId);
+
+        AlbumSimplified[] albums = MySpotify.getAlbum(artistId);
 
         request.setAttribute("albums", albums);
         request.getRequestDispatcher("WEB-INF/Funstuff/album.jsp").forward(request, response);
-        }
-
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
+
 }
