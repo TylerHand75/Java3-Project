@@ -76,6 +76,11 @@
                             data-title="<%= country.getName() %>"
                             data-population="<%= country.getPopulation() %>"
                             data-region="<%= country.getContinent() %>"
+                            data-area="<%= country.getArea() %>"
+                            data-subregion="<%= country.getSubRegion() %>"
+                            data-capital="<%= country.getCapital() %>"
+                            data-capital-lat="<%= country.getCapitalLat() %>"
+                            data-capital-ling="<%= country.getCapitalLong() %>"
                             >
                         Show more
                     </button>
@@ -86,8 +91,8 @@
     </div>
 </div>
 
-<div class=" modal fade" id="countryModal" tabindex="-1" aria-labelledby="countryModalLabel" aria-hidden="true">
-    <% for(Country country: countries) { %>
+<div class=" modal fade" id="countryModal"  aria-labelledby="countryModalLabel" aria-hidden="true">
+    <% for(Country country: countries){ %>
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
@@ -112,13 +117,11 @@
                             src="https://maps.google.com/maps?q=-15.79,-47.88&amp;z=4&amp;output=embed"
                     ></iframe>
                     <br>
-                    <a
-                            href="https://www.google.com/maps/<%=country.getCapitalLat() %>,<%= country.getCapitalLong() %>"
+                    <a      href="https://www.google.com/maps/<%=country.getCapitalLat() %>,<%= country.getCapitalLong()%>"
                             target="_blank">
                         See full page map
                     </a>
                 </p>
-
             </div>
         </div>
     </div>

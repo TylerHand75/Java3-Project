@@ -17,6 +17,7 @@ public class CountriesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (countries == null) {
             countries = CountryDAO_CSV.getAll(request, response);
+
         }
         // https://stackoverflow.com/questions/715650/how-to-clone-arraylist-and-also-clone-its-contents
         List<Country> countriesCopy = new ArrayList<>(countries.size());

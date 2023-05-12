@@ -2,12 +2,11 @@ package FunStuff;
 
 public class Country implements Comparable<Country>, Cloneable {
     private String name;
+    private String abbreviation;
     private String continent;
-
     private String subRegion;
     private int area;
     private int population;
-    private String abbreviation;
 
     private String capital;
 
@@ -19,23 +18,25 @@ public class Country implements Comparable<Country>, Cloneable {
 
 
     public Country() {
-        this("Unknown", "Unknown", "", 0,0,  "Unknown", "Unknown", 0, 0 , "Unknown");
+        this("Unknown", "Unknown", "Unknown", "", 0, 0, "Unknown", 0.0, 0.0, "Unknown");
     }
 
 
 
-    public Country(String name, String continent, String subRegion , int area  , int population, String abbreviation,
+    public Country(String name,String abbreviation, String continent, String subRegion , int area  , int population,
                    String capital, double capitalLat, double capitalLong, String GoogleMapsURL) {
         this.name = name;
-        this.continent = continent;
-        this.population = population;
         this.abbreviation = abbreviation;
+        this.continent = continent;
+        this.subRegion = subRegion;
+        this.area = area;
+        this.population = population;
         this.capital = capital;
         this.capitalLat = capitalLat;
         this.capitalLong = capitalLong;
         this.GoogleMapsURL = GoogleMapsURL;
-        this.subRegion = subRegion;
-        this.area = area;
+
+
 
 
     }

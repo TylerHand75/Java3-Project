@@ -15,7 +15,7 @@ public class CountryDAO_CSV {
 
     public static List<Country> getAll(HttpServletRequest request, HttpServletResponse response) {
         List<Country> countries = new ArrayList<>();
-        try(Scanner scanner = new Scanner(new File(request.getServletContext().getRealPath("/WEB-INF/Funstuff/countries.csv")))) {
+        try(Scanner scanner = new Scanner(new File(request.getServletContext().getRealPath("WEB-INF/Funstuff/countries.csv")))) {
             int lineCount = 0;
             while(scanner.hasNext()) {
                 String[] dataStr = scanner.nextLine().split(",");
@@ -28,21 +28,17 @@ public class CountryDAO_CSV {
                     int area = Integer.parseInt(dataStr[4]);
                     int population = Integer.parseInt(dataStr[5]);
                     String capital = dataStr[6];
-                    double capital_lat = Double.parseDouble(dataStr[7]);
-                    double capital_long = Double.parseDouble(dataStr[8]);
+                    double capitalLat = Double.parseDouble(dataStr[7]);
+                    double capitalLong = Double.parseDouble(dataStr[8]);
                     String GoogleMapsURL = dataStr[9];
-                    Country country = new Country(name, continent, subRegion ,area ,population, abbreviation,
-                            capital, capital_lat, capital_long , GoogleMapsURL );
+                    Country country = new Country(name,abbreviation, continent, subRegion, area, population,  capital, capitalLat, capitalLong, GoogleMapsURL);
                     countries.add(country);
                 }
             }
-        } catch(FileNotFoundException e) {
-            System.out.println("File not found");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
         Collections.sort(countries);
-        for (Country country : countries) {
-            String abbreviation = country.getAbbreviation();
-        }
         return countries;
     }
 
